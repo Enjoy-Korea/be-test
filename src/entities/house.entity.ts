@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { Image } from './image.entity';
 import { houseTypes } from './../commons/enums/houseTypes';
+import { map, toArray } from '@fxts/core';
 
 @Entity()
 export class House {
@@ -37,5 +38,23 @@ export class House {
 
   public getId() {
     return { houseId: this.id };
+  }
+
+  public getInfo() {
+    return {
+      houseId: this.id,
+      name: this.name,
+      description: this.description,
+      address: this.address,
+      university: this.university,
+      houseType: this.houseType,
+      pricePerDay: this.pricePerDay,
+      images: toArray(
+        map(
+          (image: Image) => ({ url: image.url, key: image.key }),
+          this.images,
+        ),
+      ),
+    };
   }
 }
