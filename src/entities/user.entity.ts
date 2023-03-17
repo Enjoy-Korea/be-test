@@ -11,4 +11,8 @@ export class User {
 
   @Column()
   password: string;
+
+  public getId() {
+    return this.id;
+  }
 }
