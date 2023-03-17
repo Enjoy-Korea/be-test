@@ -6,6 +6,7 @@ import { TypeormConfigService } from './config/typeorm-config.service';
 import { AuthModule } from './auth/auth.module';
 import * as Joi from '@hapi/joi';
 import { APP_PIPE } from '@nestjs/core';
+import { HouseModule } from './house/house.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { APP_PIPE } from '@nestjs/core';
       inject: [TypeormConfigService],
     }),
     AuthModule,
+    HouseModule,
   ],
   providers: [
     {

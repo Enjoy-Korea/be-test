@@ -11,22 +11,22 @@ import { houseTypes } from './../commons/enums/houseTypes';
 @Entity()
 export class House {
   @PrimaryGeneratedColumn({ type: 'bigint' })
-  id: number;
+  id: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', length: 50 })
   name: string;
 
   @Column({ type: 'text' })
   description: string;
 
-  @Column({ type: 'varchar', length: 255 })
+  @Column({ type: 'varchar', length: 100 })
   address: string;
 
-  @Column({ type: 'varchar', length: 20 })
+  @Column({ type: 'varchar', length: 20, nullable: true })
   university: string;
 
   @Column({ type: 'enum', enum: houseTypes })
-  houseType: houseTypes;
+  houseType: string;
 
   @Index()
   @Column({ type: 'int' })
@@ -34,4 +34,8 @@ export class House {
 
   @OneToMany(() => Image, (image) => image.house)
   images: Array<Image>;
+
+  public getId() {
+    return { houseId: this.id };
+  }
 }
