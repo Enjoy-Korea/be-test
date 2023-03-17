@@ -1,13 +1,86 @@
+import * as bcrypt from 'bcrypt';
+import { ICheckEmailDuplicateRepository } from '../../../src/auth/interfaces/i-check-email-duplicate.repository';
+import {
+  CreateUserRepositoryInputDto,
+  ICreateUserRepository,
+} from '../../../src/auth/interfaces/i-create-user.repository';
+import { User } from '../../../src/entities/user.entity';
 import { SignupService } from '../../../src/auth/services/signup.service';
+import { ConflictException } from '@nestjs/common';
 
-describe('SignupService', () => {
-  let service: SignupService;
+class FakeCheckEmailDuplicateRepository
+  implements ICheckEmailDuplicateRepository
+{
+  private readonly users: User[];
 
+  constructor(users: User[]) {
+    this.users = users;
+  }
+
+  async execute(email: string) {
+    const user = this.users.find((user) => user.email === email);
+    return Promise.resolve(user !== undefined);
+  }
+}
+
+class FakeCreateUserRepository implements ICreateUserRepository {
+  async execute(params: CreateUserRepositoryInputDto) {
+    return Promise.resolve({
+      id: '2',
+      email: params.email,
+      password: params.password,
+      getId() {
+        return '2';
+      },
+    });
+  }
+}
+
+let signupService: SignupService;
+const email = 'test1234@gmail.com';
+const password = 'test1234!';
+let hashedPassword: string;
+let users: User[];
+
+describe('SignupService 유닛 테스트', () => {
   beforeEach(async () => {
-    // service = module.get<SignupService>(SignupService);
+    hashedPassword = await bcrypt.hash(password, 12);
+    users = [
+      {
+        id: '1',
+        email,
+        password: hashedPassword,
+        getId() {
+          return '1';
+        },
+      },
+    ];
+
+    signupService = new SignupService(
+      new FakeCheckEmailDuplicateRepository(users),
+      new FakeCreateUserRepository(),
+    );
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  test('SignupService를 인스턴스로 생성할 수 있다.', async () => {
+    expect(signupService).toBeDefined();
+  });
+
+  test('사용 중인 이메일일 경우 409 에러를 반환한다.', async () => {
+    await expect(
+      signupService.execute({
+        email,
+        password,
+      }),
+    ).rejects.toThrow(ConflictException);
+  });
+
+  test('정상적인 요청에 대해 string 타입의 userId를 반환한다.', async () => {
+    const res = await signupService.execute({
+      email: 'notexists@gmail.com',
+      password,
+    });
+
+    expect(res).toEqual('2');
   });
 });

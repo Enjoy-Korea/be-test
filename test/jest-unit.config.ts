@@ -7,4 +7,5 @@ export default (): Config => ({
   collectCoverageFrom: ['**/*.js'],
   coverageDirectory: '../coverage',
   testEnvironment: 'node',
+  maxWorkers: 1,
 });
