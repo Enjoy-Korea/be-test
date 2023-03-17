@@ -4,10 +4,16 @@ import { CreateHouseService } from './services/create-house.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { House } from '../entities/house.entity';
 import { CreateHouseRepository } from './repositories/create-house.repository';
+import { CreateImagesRepository } from '../image/repositories/create-images.repository';
+import { Image } from '../entities/image.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([House])],
+  imports: [TypeOrmModule.forFeature([House, Image])],
   controllers: [CreateHouseController],
-  providers: [CreateHouseService, CreateHouseRepository],
+  providers: [
+    CreateHouseService,
+    CreateHouseRepository,
+    CreateImagesRepository,
+  ],
 })
 export class HouseModule {}

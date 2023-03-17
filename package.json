@@ -16,6 +16,7 @@
     "test:cov": "jest --coverage"
   },
   "dependencies": {
+    "@fxts/core": "^0.14.0",
     "@hapi/joi": "^17.1.1",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.1",

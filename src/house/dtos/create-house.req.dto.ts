@@ -1,13 +1,28 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  IsArray,
   IsEnum,
   IsNumber,
   IsOptional,
   IsString,
+  IsUrl,
+  Max,
   MaxLength,
+  Min,
   MinLength,
 } from 'class-validator';
 import { houseTypes } from '../../commons/enums/houseTypes';
+
+export class Image {
+  @IsUrl()
+  @MaxLength(255)
+  url: string;
+
+  @IsNumber()
+  @Min(1)
+  @Max(10)
+  key: number;
+}
 
 export class CreateHouseReqDto {
   @IsString()
@@ -63,4 +78,11 @@ export class CreateHouseReqDto {
     required: true,
   })
   pricePerDay: number;
+
+  @IsArray()
+  @ApiProperty({
+    description: '숙소 사진 url',
+    required: true,
+  })
+  images: Image[];
 }

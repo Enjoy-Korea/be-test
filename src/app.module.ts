@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import * as Joi from '@hapi/joi';
 import { APP_PIPE } from '@nestjs/core';
 import { HouseModule } from './house/house.module';
+import { ImageModule } from './image/image.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { HouseModule } from './house/house.module';
     }),
     AuthModule,
     HouseModule,
+    ImageModule,
   ],
   providers: [
     {
