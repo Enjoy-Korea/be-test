@@ -7,6 +7,10 @@ import { User } from '../entities/user.entity';
 import { CheckEmailDuplicateRepository } from './repositories/check-email-duplicate.repository';
 import { CreateUserRepository } from './repositories/create-user.repository';
 import { ConfigService } from '@nestjs/config';
+import { LoginService } from './services/login.service';
+import { GetUserByIdRepository } from './repositories/get-user-by-id.repository';
+import { GetUserByEmailRepository } from './repositories/get-user-by-email.repository';
+import { LoginController } from './controllers/login.controller';
 
 @Module({
   imports: [
@@ -19,12 +23,15 @@ import { ConfigService } from '@nestjs/config';
       }),
     }),
   ],
-  controllers: [SignupController],
+  controllers: [SignupController, LoginController],
   providers: [
     SignupService,
+    LoginService,
     JwtService,
     CheckEmailDuplicateRepository,
     CreateUserRepository,
+    GetUserByIdRepository,
+    GetUserByEmailRepository,
   ],
 })
 export class AuthModule {}
