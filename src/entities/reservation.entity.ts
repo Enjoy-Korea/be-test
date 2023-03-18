@@ -34,4 +34,22 @@ export class Reservation {
   public getId() {
     return { reservationId: this.id };
   }
+
+  public getInfo() {
+    return {
+      reservationId: this.id,
+      checkInAt: this.checkInAt,
+      checkOutAt: this.checkOutAt,
+      duration: this.duration,
+      totalPrice: this.totalPrice,
+      house: {
+        houseId: this.houseId,
+        name: this.house.name,
+        address: this.house.address,
+        university: this.house.university,
+        houseType: this.house.houseType,
+        imageUrl: this.house.images[0].url,
+      },
+    };
+  }
 }

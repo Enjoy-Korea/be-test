@@ -15,6 +15,6 @@ export class Image {
   @Column({ type: 'int' })
   key: number;
 
-  @ManyToOne(() => House)
+  @ManyToOne(() => House, (house) => house.images)
   house: House;
 }

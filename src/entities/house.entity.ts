@@ -4,6 +4,7 @@ import {
   Column,
   OneToMany,
   Index,
+  JoinColumn,
 } from 'typeorm';
 import { Image } from './image.entity';
 import { houseTypes } from './../commons/enums/houseTypes';
@@ -34,6 +35,7 @@ export class House {
   pricePerDay: number;
 
   @OneToMany(() => Image, (image) => image.house)
+  @JoinColumn()
   images: Array<Image>;
 
   public getId() {
