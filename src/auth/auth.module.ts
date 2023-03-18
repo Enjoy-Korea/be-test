@@ -11,6 +11,7 @@ import { LoginService } from './services/login.service';
 import { GetUserByIdRepository } from './repositories/get-user-by-id.repository';
 import { GetUserByEmailRepository } from './repositories/get-user-by-email.repository';
 import { LoginController } from './controllers/login.controller';
+import { JwtStrategy } from './utils/jwt.strategy';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { LoginController } from './controllers/login.controller';
   providers: [
     SignupService,
     LoginService,
+    JwtStrategy,
     JwtService,
     CheckEmailDuplicateRepository,
     CreateUserRepository,

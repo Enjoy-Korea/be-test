@@ -57,4 +57,8 @@ export class House {
       ),
     };
   }
+
+  public getPricePerDay() {
+    return this.pricePerDay;
+  }
 }

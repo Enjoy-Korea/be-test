@@ -13,9 +13,25 @@ export class Reservation {
   @Column({ type: 'bigint' })
   houseId: string;
 
+  @Column({ type: 'char', length: 8 })
+  checkInAt: string;
+
+  @Column({ type: 'char', length: 8 })
+  checkOutAt: string;
+
+  @Column({ type: 'int' })
+  duration: number;
+
+  @Column({ type: 'int' })
+  totalPrice: number;
+
   @ManyToOne(() => House, (house) => house.images)
   user: User;
 
   @ManyToOne(() => House, (house) => house.images)
   house: House;
+
+  public getId() {
+    return { reservationId: this.id };
+  }
 }
