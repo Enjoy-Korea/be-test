@@ -1,4 +1,10 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { House } from './house.entity';
 import { User } from './user.entity';
 
@@ -24,6 +30,9 @@ export class Reservation {
 
   @Column({ type: 'int' })
   totalPrice: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
 
   @ManyToOne(() => House, (house) => house.images)
   user: User;

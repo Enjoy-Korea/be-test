@@ -1,4 +1,4 @@
-import { Image } from '../dtos/create-house.req.dto';
+import { Thumbnail } from '../dtos/create-house.req.dto';
 
 export interface CreateHouseServiceInputDto {
   name: string;
@@ -7,7 +7,7 @@ export interface CreateHouseServiceInputDto {
   university?: string;
   houseType: string;
   pricePerDay: number;
-  images: Image[];
+  images: Thumbnail[];
 }
 
 export interface CreateHouseServiceOutputDto {

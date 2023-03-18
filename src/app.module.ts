@@ -39,7 +39,7 @@ import * as cookieParser from 'cookie-parser';
   providers: [
     {
       provide: APP_PIPE,
-      useValue: new ValidationPipe({ whitelist: true }),
+      useValue: new ValidationPipe({ whitelist: true, transform: true }),
     },
   ],
 })

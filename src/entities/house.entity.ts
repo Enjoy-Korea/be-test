@@ -5,9 +5,10 @@ import {
   OneToMany,
   Index,
   JoinColumn,
+  CreateDateColumn,
 } from 'typeorm';
 import { Image } from './image.entity';
-import { houseTypes } from './../commons/enums/houseTypes';
+import { houseTypesEnum } from '../commons/enums/house-types.enum';
 import { map, toArray } from '@fxts/core';
 
 @Entity()
@@ -27,12 +28,15 @@ export class House {
   @Column({ type: 'varchar', length: 20, nullable: true })
   university: string;
 
-  @Column({ type: 'enum', enum: houseTypes })
+  @Column({ type: 'enum', enum: houseTypesEnum })
   houseType: string;
 
   @Index()
   @Column({ type: 'int' })
   pricePerDay: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
 
   @OneToMany(() => Image, (image) => image.house)
   @JoinColumn()
@@ -48,7 +52,7 @@ export class House {
       name: this.name,
       description: this.description,
       address: this.address,
-      university: this.university,
+      university: this.university ?? null,
       houseType: this.houseType,
       pricePerDay: this.pricePerDay,
       images: toArray(
@@ -62,5 +66,15 @@ export class House {
 
   public getPricePerDay() {
     return this.pricePerDay;
+  }
+
+  public getInfoForList() {
+    return {
+      name: this.name,
+      university: this.university ?? null,
+      houseType: this.houseType,
+      pricePerDay: this.pricePerDay,
+      images: this.images,
+    };
   }
 }

@@ -1,4 +1,4 @@
-export enum houseTypes {
+export enum houseTypesEnum {
   APT = '아파트',
   PENSION = '펜션',
   HOUSE = '단독주택',

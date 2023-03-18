@@ -1,4 +1,4 @@
-import { Image } from '../dtos/create-house.req.dto';
+import { Thumbnail } from '../dtos/create-house.req.dto';
 
 export interface GetHouseByIdServiceOutputDto {
   houseId: string;
@@ -8,7 +8,7 @@ export interface GetHouseByIdServiceOutputDto {
   university: string | undefined;
   houseType: string;
   pricePerDay: number;
-  images: Image[];
+  images: Thumbnail[];
 }
 
 export interface IGetHouseByIdService {

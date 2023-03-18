@@ -1,5 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  ArrayMaxSize,
+  ArrayMinSize,
   IsArray,
   IsEnum,
   IsNumber,
@@ -10,10 +12,12 @@ import {
   MaxLength,
   Min,
   MinLength,
+  ValidateNested,
 } from 'class-validator';
-import { houseTypes } from '../../commons/enums/houseTypes';
+import { Type } from 'class-transformer';
+import { houseTypesEnum } from '../../commons/enums/house-types.enum';
 
-export class Image {
+export class Thumbnail {
   @IsUrl()
   @MaxLength(255)
   url: string;
@@ -63,7 +67,7 @@ export class CreateHouseReqDto {
   })
   university?: string;
 
-  @IsEnum(houseTypes)
+  @IsEnum(houseTypesEnum)
   @ApiProperty({
     example: '펜션',
     description: '숙소 종류 | [아파트, 펜션, 단독주택, 오피스텔, 원룸]',
@@ -80,9 +84,13 @@ export class CreateHouseReqDto {
   pricePerDay: number;
 
   @IsArray()
+  @ValidateNested({ each: true })
+  @ArrayMinSize(1)
+  @ArrayMaxSize(5)
+  @Type(() => Image)
   @ApiProperty({
     description: '숙소 사진 url',
     required: true,
   })
-  images: Image[];
+  images: Thumbnail[];
 }
