@@ -6,7 +6,7 @@ export class Image {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: string;
 
-  @Column()
+  @Column({ type: 'bigint' })
   houseId: string;
 
   @Column({ type: 'varchar', length: 255 })

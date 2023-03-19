@@ -89,6 +89,20 @@ export class CreateHouseReqDto {
   @ArrayMaxSize(5)
   @Type(() => Thumbnail)
   @ApiProperty({
+    example: [
+      {
+        url: 'https://s3.enkor.com/thumbnails/1234',
+        key: 1,
+      },
+      {
+        url: 'https://s3.enkor.com/thumbnails/1235',
+        key: 2,
+      },
+      {
+        url: 'https://s3.enkor.com/thumbnails/1236',
+        key: 3,
+      },
+    ],
     description: '숙소 사진 url',
     required: true,
   })

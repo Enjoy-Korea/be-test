@@ -15,7 +15,11 @@ export class CreateReservationController {
   ) {}
 
   @ApiOperation({ summary: '숙소 예약' })
-  @ApiResponse({ status: 201 })
+  @ApiResponse({
+    status: 201,
+    description: '숙소 예약 성공',
+    type: CreateReservationResDto,
+  })
   @ApiTags('Reservation')
   @Post()
   @UseGuards(AuthGuard('jwt'))

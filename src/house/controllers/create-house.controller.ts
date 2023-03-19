@@ -12,7 +12,11 @@ export class CreateHouseController {
   ) {}
 
   @ApiOperation({ summary: '숙소 등록' })
-  @ApiResponse({ status: 201 })
+  @ApiResponse({
+    status: 201,
+    description: '숙소 등록 성공',
+    type: CreateHouseResDto,
+  })
   @ApiTags('House')
   @Post()
   async createHouse(

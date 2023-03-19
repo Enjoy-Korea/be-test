@@ -22,7 +22,6 @@ export class GetHousesController {
   getHouses(
     @Query() getHousesReqDto: GetHousesReqDto,
   ): Promise<GetHousesResDto<HouseInfo>> {
-    console.log(getHousesReqDto);
     return this.getHousesService.execute(getHousesReqDto);
   }
 }

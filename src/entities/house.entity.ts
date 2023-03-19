@@ -11,7 +11,7 @@ import { Image } from './image.entity';
 import { houseTypesEnum } from '../commons';
 import { map, toArray } from '@fxts/core';
 
-@Entity()
+@Entity({ name: 'houses' })
 export class House {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: string;
