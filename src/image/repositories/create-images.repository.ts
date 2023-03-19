@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Image } from '../../entities/image.entity';
@@ -7,6 +7,7 @@ import {
   ICreateImagesRepository,
 } from '../interfaces/i-create-images.repository';
 import { map, toArray } from '@fxts/core';
+import { getNamespace } from 'cls-hooked';
 
 @Injectable()
 export class CreateImagesRepository implements ICreateImagesRepository {
@@ -15,6 +16,10 @@ export class CreateImagesRepository implements ICreateImagesRepository {
   ) {}
 
   async execute(params: CreateImagesRepositoryInputDto): Promise<void> {
+    const queryRunner = getNamespace('transaction')?.get('queryRunner');
+    if (!queryRunner) {
+      throw new InternalServerErrorException('트랜잭션 에러');
+    }
     const { houseId, images } = params;
     const imageEntities = toArray(
       map(
@@ -27,7 +32,15 @@ export class CreateImagesRepository implements ICreateImagesRepository {
         images,
       ),
     );
-    await this.imageRepository.save(imageEntities);
+    try {
+      await queryRunner.manager.save(imageEntities);
+      await queryRunner.commitTransaction();
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+      throw new InternalServerErrorException('트랜잭션 에러');
+    } finally {
+      await queryRunner.release();
+    }
     return;
   }
 }

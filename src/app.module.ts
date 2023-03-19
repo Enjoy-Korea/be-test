@@ -1,4 +1,9 @@
-import { MiddlewareConsumer, Module, ValidationPipe } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  RequestMethod,
+  ValidationPipe,
+} from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DbConfigModule } from './config/db-config.module';
@@ -10,6 +15,7 @@ import { HouseModule } from './house/house.module';
 import { ImageModule } from './image/image.module';
 import { ReservationModule } from './reservation/reservation.module';
 import * as cookieParser from 'cookie-parser';
+import { SetTransactionMiddleware } from './commons/middlewares/namespace';
 
 @Module({
   imports: [
@@ -45,6 +51,10 @@ import * as cookieParser from 'cookie-parser';
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(cookieParser()).forRoutes('*');
+    consumer
+      .apply(cookieParser())
+      .forRoutes('*')
+      .apply(SetTransactionMiddleware)
+      .forRoutes({ path: 'api/houses', method: RequestMethod.POST });
   }
 }

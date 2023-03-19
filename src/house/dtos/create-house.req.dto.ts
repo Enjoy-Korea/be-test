@@ -87,7 +87,7 @@ export class CreateHouseReqDto {
   @ValidateNested({ each: true })
   @ArrayMinSize(1)
   @ArrayMaxSize(5)
-  @Type(() => Image)
+  @Type(() => Thumbnail)
   @ApiProperty({
     description: '숙소 사진 url',
     required: true,

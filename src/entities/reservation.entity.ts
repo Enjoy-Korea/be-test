@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { House } from './house.entity';
 import { User } from './user.entity';
+import { pipe } from '@fxts/core';
 
 @Entity({ name: 'reservations' })
 export class Reservation {
@@ -55,9 +56,9 @@ export class Reservation {
         houseId: this.houseId,
         name: this.house.name,
         address: this.house.address,
-        university: this.house.university,
+        university: this.house.university ?? null,
         houseType: this.house.houseType,
-        imageUrl: this.house.images[0].url,
+        imageUrl: this.house.images[0]?.url ?? null,
       },
     };
   }
