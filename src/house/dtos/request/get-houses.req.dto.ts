@@ -41,21 +41,21 @@ export class GetHousesReqDto {
   order: Order = Order.DESC;
 
   public getPage(): number {
-    return this.page!;
+    return this.page;
   }
 
   public getLimit(): number {
-    return this.limit!;
+    return this.limit;
   }
 
   public getOrder(): string {
-    return this.order!;
+    return this.order;
   }
   public getSkip(): number {
-    return (this.page! - 1) * this.limit!;
+    return (this.page - 1) * this.limit;
   }
 
   public getSortBy(): string {
-    return this.sortBy!;
+    return this.sortBy;
   }
 }

@@ -5,7 +5,7 @@ export interface GetHouseByIdServiceOutputDto {
   name: string;
   description: string;
   address: string;
-  university: string | undefined;
+  university: string | null;
   houseType: string;
   pricePerDay: number;
   images: Thumbnail[];

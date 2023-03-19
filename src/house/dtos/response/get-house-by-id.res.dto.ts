@@ -10,12 +10,14 @@ export class GetHouseByIdResDto extends PickType(CreateHouseReqDto, [
   'name',
   'description',
   'address',
-  'university',
   'houseType',
   'pricePerDay',
 ] as const) {
   @ApiProperty({ example: '329', description: '숙소 ID' })
   houseId: string;
+
+  @ApiProperty({ example: null, description: '인근 대학' })
+  university: string | null;
 
   @ApiProperty({
     example: [

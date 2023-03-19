@@ -13,6 +13,24 @@ import { map, toArray } from '@fxts/core';
 
 @Entity({ name: 'houses' })
 export class House {
+  constructor(
+    name: string,
+    description: string,
+    address: string,
+    houseType: string,
+    pricePerDay: number,
+    university: string | undefined = undefined,
+    id = '1',
+  ) {
+    this.id = id;
+    this.name = name;
+    this.address = address;
+    this.houseType = houseType;
+    this.pricePerDay = pricePerDay;
+    this.university = university;
+    this.createdAt = new Date();
+  }
+
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: string;
 
@@ -26,7 +44,7 @@ export class House {
   address: string;
 
   @Column({ type: 'varchar', length: 20, nullable: true })
-  university: string;
+  university: string | undefined;
 
   @Column({ type: 'enum', enum: houseTypesEnum })
   houseType: string;

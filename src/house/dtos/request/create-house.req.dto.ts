@@ -65,7 +65,7 @@ export class CreateHouseReqDto {
     description: '숙소 인근 대학교 | 필수값 ❌',
     required: false,
   })
-  university?: string;
+  university: string | undefined;
 
   @IsEnum(houseTypesEnum)
   @ApiProperty({

@@ -5,9 +5,9 @@ import { ICreateReservationService } from '../interfaces';
 import { CreateReservationReqDto, CreateReservationResDto } from '../dtos';
 import { AuthGuard } from '@nestjs/passport';
 import { CurrentUser, TokenPayload } from '../../commons';
-import { getDuration } from '../../house/utils/getDuration';
+import { getDuration } from '../utils/get-duration';
 
-@Controller('api/reservations')
+@Controller('api/reservation')
 export class CreateReservationController {
   constructor(
     @Inject(CreateReservationService)

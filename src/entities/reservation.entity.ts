@@ -8,7 +8,7 @@ import {
 import { House } from './house.entity';
 import { User } from './user.entity';
 
-@Entity({ name: 'reservations' })
+@Entity({ name: 'reservation' })
 export class Reservation {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: string;
@@ -57,7 +57,7 @@ export class Reservation {
         address: this.house.address,
         university: this.house.university ?? null,
         houseType: this.house.houseType,
-        imageUrl: this.house.images[0]?.url ?? null,
+        imageUrl: this.house.images![0].url ?? null,
       },
     };
   }

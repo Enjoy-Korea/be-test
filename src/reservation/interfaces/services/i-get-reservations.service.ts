@@ -2,7 +2,7 @@ export interface houseInfo {
   houseId: string;
   name: string;
   address: string;
-  university: string | undefined;
+  university: string | null;
   houseType: string;
   imageUrl: string;
 }

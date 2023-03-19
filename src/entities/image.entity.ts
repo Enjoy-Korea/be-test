@@ -16,5 +16,5 @@ export class Image {
   key: number;
 
   @ManyToOne(() => House, (house) => house.images)
-  house: House;
+  house?: House;
 }
