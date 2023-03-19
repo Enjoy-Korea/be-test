@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { houseInfo } from '../interfaces/i-get-reservations.service';
+import { houseInfo } from '../../interfaces';
 
 export class GetReservationsResDto {
   @ApiProperty({ example: '329', description: '숙소 ID' })

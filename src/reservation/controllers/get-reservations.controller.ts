@@ -1,10 +1,9 @@
 import { Controller, Get, Inject, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CurrentUser } from '../../commons/decorators/current-user.decorator';
-import { TokenPayload } from '../../commons/types/token-payload';
-import { GetReservationsService } from '../services/get-reservations.service';
-import { IGetReservationsService } from '../interfaces/i-get-reservations.service';
-import { GetReservationsResDto } from '../dtos/get-reservations.res.dto';
+import { CurrentUser, TokenPayload } from '../../commons';
+import { GetReservationsService } from '../services';
+import { IGetReservationsService } from '../interfaces';
+import { GetReservationsResDto } from '../dtos';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('api/reservations')

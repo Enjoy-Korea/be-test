@@ -1,11 +1,11 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { House } from '../../entities/house.entity';
+import { House } from '../../entities';
 import {
   CreateHouseRepositoryInputDto,
   ICreateHouseRepository,
-} from '../interfaces/i-create-house.repository';
+} from '../interfaces';
 import { getNamespace } from 'cls-hooked';
 
 @Injectable()

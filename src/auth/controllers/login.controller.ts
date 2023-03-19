@@ -1,13 +1,11 @@
 import { Body, Controller, HttpCode, Inject, Post, Res } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { IJwtService } from '../interfaces/i-jwt.service';
+import { ILoginService, IJwtService } from '../interfaces';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
-import { LoginService } from '../services/login.service';
-import { ILoginService } from '../interfaces/i-login.service';
-import { LoginResDto } from '../dtos/login.res.dto';
-import { TokenPayload } from '../../commons/types/token-payload';
-import { LoginReqDto } from '../dtos/login.req.dto';
+import { LoginResDto, LoginReqDto } from '../dtos';
+import { TokenPayload } from '../../commons';
+import { LoginService } from '../services';
 
 @Controller('api/auth/login')
 export class LoginController {

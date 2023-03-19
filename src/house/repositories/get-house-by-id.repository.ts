@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { House } from '../../entities/house.entity';
-import { IGetHouseByIdRepository } from '../interfaces/i-get-house-by-id.repository';
+import { House } from '../../entities';
+import { IGetHouseByIdRepository } from '../interfaces';
 
 @Injectable()
 export class GetHouseByIdRepository implements IGetHouseByIdRepository {

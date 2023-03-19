@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ICreateHouseRepository } from '../interfaces/i-create-house.repository';
 import {
   CreateHouseServiceInputDto,
   CreateHouseServiceOutputDto,
-} from '../interfaces/i-create-house.service';
-import { CreateHouseRepository } from '../repositories/create-house.repository';
+  ICreateHouseRepository,
+} from '../interfaces';
+import { CreateHouseRepository } from '../repositories';
 import { CreateImagesRepository } from '../../image/repositories/create-images.repository';
 import { ICreateImagesRepository } from '../../image/interfaces/i-create-images.repository';
 

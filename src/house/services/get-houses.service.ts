@@ -2,12 +2,14 @@ import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import {
   GetHousesServiceInputDto,
   GetHousesServiceOutputDto,
-} from '../interfaces/i-get-houses.service';
+  IGetHouseTotalCountRepository,
+  IGetHousesRepository,
+} from '../interfaces';
 import { map, toArray } from '@fxts/core';
-import { IGetHouseTotalCountRepository } from '../interfaces/i-get-house-total-count.repository';
-import { GetHouseTotalCountRepository } from '../repositories/get-house-total-count.repository';
-import { IGetHousesRepository } from '../interfaces/i-get-houses.repository';
-import { GetHousesRepository } from '../repositories/get-houses.repository';
+import {
+  GetHouseTotalCountRepository,
+  GetHousesRepository,
+} from '../repositories';
 
 @Injectable()
 export class GetHousesService {

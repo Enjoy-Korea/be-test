@@ -1,4 +1,4 @@
-import { Reservation } from '../../entities/reservation.entity';
+import { Reservation } from '../../../entities';
 
 export interface CreateReservationRepositoryInputDto {
   userId: string;

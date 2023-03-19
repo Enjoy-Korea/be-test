@@ -1,13 +1,11 @@
 import { Body, Controller, Inject, Post, Res } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { IJwtService } from '../interfaces/i-jwt.service';
-import { SignupService } from '../services/signup.service';
+import { IJwtService, ISignupService } from '../interfaces';
+import { SignupService } from '../services';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { SignupReqDto } from '../dtos/signup.req.dto';
-import { TokenPayload } from '../../commons/types/token-payload';
+import { SignupReqDto, SignupResDto } from '../dtos';
+import { TokenPayload } from '../../commons';
 import { Response } from 'express';
-import { SignupResDto } from '../dtos/signup.res.dto';
-import { ISignupService } from '../interfaces/i-signup.service';
 
 @Controller('api/auth')
 export class SignupController {

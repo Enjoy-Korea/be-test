@@ -1,5 +1,4 @@
-import { Thumbnail } from '../dtos/create-house.req.dto';
-import { PaginationInfo } from '../dtos/get-houses.res.dto';
+import { Thumbnail, PaginationInfo } from '../../dtos';
 
 export interface GetHousesServiceInputDto {
   page: number;

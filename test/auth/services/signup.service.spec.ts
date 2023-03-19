@@ -1,9 +1,9 @@
 import * as bcrypt from 'bcrypt';
-import { ICheckEmailDuplicateRepository } from '../../../src/auth/interfaces/i-check-email-duplicate.repository';
+import { ICheckEmailDuplicateRepository } from '../../../src/auth/interfaces/repositories/i-check-email-duplicate.repository';
 import {
   CreateUserRepositoryInputDto,
   ICreateUserRepository,
-} from '../../../src/auth/interfaces/i-create-user.repository';
+} from '../../../src/auth/interfaces/repositories/i-create-user.repository';
 import { User } from '../../../src/entities/user.entity';
 import { SignupService } from '../../../src/auth/services/signup.service';
 import { ConflictException } from '@nestjs/common';

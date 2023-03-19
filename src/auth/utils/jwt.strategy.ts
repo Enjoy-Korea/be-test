@@ -3,7 +3,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { TokenPayload } from '../../commons/types/token-payload';
 import { ConfigService } from '@nestjs/config';
-import { IGetUserByIdRepository } from '../interfaces/i-get-user-by-id.repository';
+import { IGetUserByIdRepository } from '../interfaces/repositories/i-get-user-by-id.repository';
 import { GetUserByIdRepository } from '../repositories/get-user-by-id.repository';
 
 @Injectable()

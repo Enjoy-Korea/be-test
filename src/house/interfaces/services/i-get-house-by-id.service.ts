@@ -1,4 +1,4 @@
-import { Thumbnail } from '../dtos/create-house.req.dto';
+import { Thumbnail } from '../../dtos';
 
 export interface GetHouseByIdServiceOutputDto {
   houseId: string;

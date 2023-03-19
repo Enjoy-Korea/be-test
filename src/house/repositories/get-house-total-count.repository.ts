@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { IGetHouseTotalCountRepository } from '../interfaces/i-get-house-total-count.repository';
-import { House } from '../../entities/house.entity';
+import { IGetHouseTotalCountRepository } from '../interfaces';
+import { House } from '../../entities';
 
 @Injectable()
 export class GetHouseTotalCountRepository

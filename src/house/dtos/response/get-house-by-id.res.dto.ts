@@ -1,5 +1,5 @@
 import { ApiProperty, PickType } from '@nestjs/swagger';
-import { CreateHouseReqDto } from './create-house.req.dto';
+import { CreateHouseReqDto } from '../request/create-house.req.dto';
 
 interface imageRes {
   url: string;

@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcrypt';
 import { User } from '../../../src/entities/user.entity';
 import { LoginService } from '../../../src/auth/services/login.service';
-import { IGetUserByEmailRepository } from '../../../src/auth/interfaces/i-get-user-by-email.repository';
+import { IGetUserByEmailRepository } from '../../../src/auth/interfaces/repositories/i-get-user-by-email.repository';
 import { BadRequestException } from '@nestjs/common';
 
 class FakeGetUserByEmailRepository implements IGetUserByEmailRepository {

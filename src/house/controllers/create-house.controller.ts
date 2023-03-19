@@ -1,9 +1,8 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ICreateHouseService } from '../interfaces/i-create-house.service';
-import { CreateHouseService } from '../services/create-house.service';
-import { CreateHouseReqDto } from '../dtos/create-house.req.dto';
-import { CreateHouseResDto } from '../dtos/create-house.res.dto';
+import { ICreateHouseService } from '../interfaces';
+import { CreateHouseService } from '../services';
+import { CreateHouseReqDto, CreateHouseResDto } from '../dtos';
 
 @Controller('api/houses')
 export class CreateHouseController {

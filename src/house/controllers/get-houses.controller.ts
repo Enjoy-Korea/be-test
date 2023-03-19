@@ -1,12 +1,8 @@
 import { Controller, Get, Inject, Query } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { GetHousesReqDto } from '../dtos/get-houses.req.dto';
-import { GetHousesService } from '../services/get-houses.service';
-import {
-  HouseInfo,
-  IGetHousesService,
-} from '../interfaces/i-get-houses.service';
-import { GetHousesResDto } from '../dtos/get-houses.res.dto';
+import { GetHousesReqDto, GetHousesResDto } from '../dtos';
+import { GetHousesService } from '../services';
+import { HouseInfo, IGetHousesService } from '../interfaces';
 
 @Controller('api/houses')
 export class GetHousesController {

@@ -1,4 +1,4 @@
-import { House } from '../../entities/house.entity';
+import { House } from '../../../entities';
 
 export interface GetHousesRepositoryInputDto {
   limit: number;

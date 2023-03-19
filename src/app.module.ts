@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DbConfigModule } from './config/db-config.module';
+import { AppConfigModule } from './config/config.module';
 import { TypeormConfigService } from './config/typeorm-config.service';
 import { AuthModule } from './auth/auth.module';
 import * as Joi from '@hapi/joi';
@@ -15,7 +15,7 @@ import { HouseModule } from './house/house.module';
 import { ImageModule } from './image/image.module';
 import { ReservationModule } from './reservation/reservation.module';
 import * as cookieParser from 'cookie-parser';
-import { SetTransactionMiddleware } from './commons/middlewares/namespace';
+import { SetTransactionMiddleware } from './commons';
 
 @Module({
   imports: [
@@ -33,7 +33,7 @@ import { SetTransactionMiddleware } from './commons/middlewares/namespace';
       }),
     }),
     TypeOrmModule.forRootAsync({
-      imports: [DbConfigModule],
+      imports: [AppConfigModule],
       useClass: TypeormConfigService,
       inject: [TypeormConfigService],
     }),

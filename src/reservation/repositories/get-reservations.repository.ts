@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { IGetReservationsRepository } from '../interfaces/i-get-reservations.repository';
-import { Reservation } from '../../entities/reservation.entity';
+import { IGetReservationsRepository } from '../interfaces';
+import { Reservation } from '../../entities';
 
 @Injectable()
 export class GetReservationsRepository implements IGetReservationsRepository {

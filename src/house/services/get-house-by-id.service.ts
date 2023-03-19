@@ -1,10 +1,10 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
-import { GetHouseByIdRepository } from '../repositories/get-house-by-id.repository';
-import { IGetHouseByIdRepository } from '../interfaces/i-get-house-by-id.repository';
+import { GetHouseByIdRepository } from '../repositories';
 import {
   GetHouseByIdServiceOutputDto,
   IGetHouseByIdService,
-} from '../interfaces/i-get-house-by-id.service';
+  IGetHouseByIdRepository,
+} from '../interfaces';
 
 @Injectable()
 export class GetHouseByIdService implements IGetHouseByIdService {

@@ -1,14 +1,7 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import {
-  IsAlphanumeric,
-  IsEnum,
-  IsInt,
-  IsOptional,
-  Max,
-  Min,
-} from 'class-validator';
+import { IsEnum, IsInt, IsOptional, Max, Min } from 'class-validator';
 import { Type } from 'class-transformer';
-import { Order } from '../../commons/enums/order.enum';
+import { Order } from '../../../commons';
 
 enum SortBy {
   Date = 'createdAt',

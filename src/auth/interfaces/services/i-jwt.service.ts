@@ -1,4 +1,4 @@
-import { TokenPayload } from '../../commons/types/token-payload';
+import { TokenPayload } from '../../../commons';
 import { JwtSignOptions } from '@nestjs/jwt';
 
 export interface IJwtService {

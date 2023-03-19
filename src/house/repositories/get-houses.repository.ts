@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { House } from '../../entities/house.entity';
+import { House } from '../../entities';
 import {
   GetHousesRepositoryInputDto,
   IGetHousesRepository,
-} from '../interfaces/i-get-houses.repository';
+} from '../interfaces';
 
 @Injectable()
 export class GetHousesRepository implements IGetHousesRepository {

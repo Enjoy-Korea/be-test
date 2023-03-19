@@ -7,7 +7,6 @@ import {
 } from 'typeorm';
 import { House } from './house.entity';
 import { User } from './user.entity';
-import { pipe } from '@fxts/core';
 
 @Entity({ name: 'reservations' })
 export class Reservation {

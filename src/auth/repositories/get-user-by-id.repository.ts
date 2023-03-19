@@ -1,8 +1,8 @@
-import { User } from '../../entities/user.entity';
+import { User } from '../../entities';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { IGetUserByIdRepository } from '../interfaces/i-get-user-by-id.repository';
+import { IGetUserByIdRepository } from '../interfaces';
 
 @Injectable()
 export class GetUserByIdRepository implements IGetUserByIdRepository {

@@ -1,4 +1,4 @@
-import { User } from '../../entities/user.entity';
+import { User } from '../../../entities';
 
 export interface IGetUserByIdRepository {
   execute(userId: string): Promise<User | null>;

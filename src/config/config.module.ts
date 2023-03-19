@@ -4,4 +4,4 @@ import { TypeormConfigService } from './typeorm-config.service';
 @Module({
   providers: [TypeormConfigService],
 })
-export class DbConfigModule {}
+export class AppConfigModule {}

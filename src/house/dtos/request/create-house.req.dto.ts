@@ -15,7 +15,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { houseTypesEnum } from '../../commons/enums/house-types.enum';
+import { houseTypesEnum } from '../../../commons';
 
 export class Thumbnail {
   @IsUrl()

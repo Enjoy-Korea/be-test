@@ -1,7 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { GetReservationsServiceOutputDto } from '../interfaces/i-get-reservations.service';
-import { IGetReservationsRepository } from '../interfaces/i-get-reservations.repository';
-import { GetReservationsRepository } from '../repositories/get-reservations.repository';
+import {
+  GetReservationsServiceOutputDto,
+  IGetReservationsRepository,
+} from '../interfaces';
+import { GetReservationsRepository } from '../repositories';
 import { map, toArray } from '@fxts/core';
 
 @Injectable()

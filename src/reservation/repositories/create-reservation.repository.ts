@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Reservation } from '../../entities/reservation.entity';
+import { Reservation } from '../../entities';
 import {
   CreateReservationRepositoryInputDto,
   ICreateReservationRepository,
-} from '../interfaces/i-create-reservation.repository';
+} from '../interfaces';
 
 @Injectable()
 export class CreateReservationRepository

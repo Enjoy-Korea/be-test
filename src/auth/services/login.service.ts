@@ -1,11 +1,11 @@
 import { Injectable, BadRequestException, Inject } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { GetUserByEmailRepository } from '../repositories/get-user-by-email.repository';
-import { IGetUserByEmailRepository } from '../interfaces/i-get-user-by-email.repository';
+import { GetUserByEmailRepository } from '../repositories';
 import {
   ILoginService,
   LoginServiceInputDto,
-} from '../interfaces/i-login.service';
+  IGetUserByEmailRepository,
+} from '../interfaces';
 
 @Injectable()
 export class LoginService implements ILoginService {

@@ -1,13 +1,15 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
-import { GetHouseByIdRepository } from '../../house/repositories/get-house-by-id.repository';
-import { IGetHouseByIdRepository } from '../../house/interfaces/i-get-house-by-id.repository';
+import { GetHouseByIdRepository } from '../../house/repositories';
+import { IGetHouseByIdRepository } from '../../house/interfaces';
 import {
   CreateReservationServiceInputDto,
   CreateReservationServiceOutputDto,
-} from '../interfaces/i-create-reservation.service';
-import { ICreateReservationRepository } from '../interfaces/i-create-reservation.repository';
-import { CreateReservationRepository } from '../repositories/create-reservation.repository';
-import { CheckReservationAvailableRepository } from '../repositories/check-reservation-available.repository';
+  ICreateReservationRepository,
+} from '../interfaces';
+import {
+  CreateReservationRepository,
+  CheckReservationAvailableRepository,
+} from '../repositories';
 
 @Injectable()
 export class CreateReservationService {
