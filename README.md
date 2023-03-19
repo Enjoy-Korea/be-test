@@ -3,8 +3,6 @@
 ## 1. ERD
 ![](./docs/enkor-bnb-erd.png)
 
-
-
 ## 2. 실행 방법
 - DB 세팅을 위한 컨테이너 실행
   - docker compose up -d enkor_development 
@@ -16,7 +14,7 @@
   - npm run test 또는 npm run test:watch
 
 ## 3. API 문서
-- npm run start:dev로 프로젝트 실행 후 localhost:8000/api.docs로 접속
+- npm run start:dev로 프로젝트 실행 후 localhost:8000/api/docs로 접속
 
 ## 구현 기능
 - 회원 기능
