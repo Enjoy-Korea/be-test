@@ -6,6 +6,7 @@ import {
   IsEnum,
   IsNumber,
   IsOptional,
+  IsPositive,
   IsString,
   IsUrl,
   Max,
@@ -75,7 +76,7 @@ export class CreateHouseReqDto {
   })
   houseType: string;
 
-  @IsNumber()
+  @IsPositive()
   @ApiProperty({
     example: '30000',
     description: '1박당 가격',
