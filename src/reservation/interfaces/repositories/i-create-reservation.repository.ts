@@ -5,6 +5,7 @@ export interface CreateReservationRepositoryInputDto {
   houseId: string;
   checkInAt: string;
   checkOutAt: string;
+  duration: number;
   totalPrice: number;
 }
 

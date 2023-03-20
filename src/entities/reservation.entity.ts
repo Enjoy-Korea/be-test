@@ -10,6 +10,23 @@ import { User } from './user.entity';
 
 @Entity({ name: 'reservations' })
 export class Reservation {
+  constructor(
+    userId: string,
+    houseId: string,
+    checkInAt: string,
+    checkOutAt: string,
+    duration: number,
+    totalPrice: number,
+    id: string,
+  ) {
+    this.id = id;
+    this.userId = userId;
+    this.houseId = houseId;
+    this.checkInAt = checkInAt;
+    this.checkOutAt = checkOutAt;
+    this.duration = duration;
+    this.totalPrice = totalPrice;
+  }
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: string;
 

@@ -4,7 +4,9 @@ import { IGetHouseByIdRepository } from '../../house/interfaces';
 import {
   CreateReservationServiceInputDto,
   CreateReservationServiceOutputDto,
+  ICheckReservationAvailableRepository,
   ICreateReservationRepository,
+  ICreateReservationService,
 } from '../interfaces';
 import {
   CreateReservationRepository,
@@ -12,12 +14,12 @@ import {
 } from '../repositories';
 
 @Injectable()
-export class CreateReservationService {
+export class CreateReservationService implements ICreateReservationService {
   constructor(
     @Inject(GetHouseByIdRepository)
     private getHouseByIdRepository: IGetHouseByIdRepository,
     @Inject(CheckReservationAvailableRepository)
-    private checkReservationAvailableRepository: CheckReservationAvailableRepository,
+    private checkReservationAvailableRepository: ICheckReservationAvailableRepository,
     @Inject(CreateReservationRepository)
     private createReservationRepository: ICreateReservationRepository,
   ) {}
