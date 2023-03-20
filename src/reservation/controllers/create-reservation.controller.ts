@@ -7,7 +7,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { CurrentUser, TokenPayload } from '../../commons';
 import { getDuration } from '../utils/get-duration';
 
-@Controller('api/reservation')
+@Controller('api/reservations')
 export class CreateReservationController {
   constructor(
     @Inject(CreateReservationService)

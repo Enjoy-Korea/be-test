@@ -19,7 +19,6 @@ export class TypeormConfigService implements TypeOrmOptionsFactory {
       logging: process.env.NODE_ENV === 'development',
       poolSize: 0,
       entities: [User, House, Reservation, Image],
-      timezone: 'KST',
     };
   }
 }

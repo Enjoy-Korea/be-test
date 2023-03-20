@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppConfigModule } from './config/config.module';
+import { AppConfigModule } from './config/app-config.module';
 import { TypeormConfigService } from './config/typeorm-config.service';
 import { AuthModule } from './auth/auth.module';
 import * as Joi from '@hapi/joi';

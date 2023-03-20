@@ -6,7 +6,7 @@ import { IGetReservationsService } from '../interfaces';
 import { GetReservationsResDto } from '../dtos';
 import { AuthGuard } from '@nestjs/passport';
 
-@Controller('api/reservation')
+@Controller('api/reservations')
 export class GetReservationsController {
   constructor(
     @Inject(GetReservationsService)

@@ -15,6 +15,7 @@ export class GetReservationsRepository implements IGetReservationsRepository {
     const reservations = await this.reservationRepository.find({
       where: { userId },
       relations: { house: { images: true } },
+      order: { createdAt: 'DESC' },
     });
     return reservations;
   }

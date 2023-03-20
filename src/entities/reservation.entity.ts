@@ -8,15 +8,15 @@ import {
 import { House } from './house.entity';
 import { User } from './user.entity';
 
-@Entity({ name: 'reservation' })
+@Entity({ name: 'reservations' })
 export class Reservation {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: string;
 
-  @Column({ type: 'bigint' })
+  @Column()
   userId: string;
 
-  @Column({ type: 'bigint' })
+  @Column()
   houseId: string;
 
   @Column({ type: 'char', length: 8 })
@@ -34,10 +34,10 @@ export class Reservation {
   @CreateDateColumn()
   createdAt: Date;
 
-  @ManyToOne(() => House, (house) => house.images)
+  @ManyToOne(() => User)
   user: User;
 
-  @ManyToOne(() => House, (house) => house.images)
+  @ManyToOne(() => House)
   house: House;
 
   public getId() {

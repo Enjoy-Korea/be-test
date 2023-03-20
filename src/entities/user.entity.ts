@@ -6,10 +6,10 @@ export class User {
   id: string;
 
   @Index()
-  @Column()
+  @Column({ type: 'varchar', length: 40 })
   email: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 100 })
   password: string;
 
   public getId() {
