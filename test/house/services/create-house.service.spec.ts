@@ -32,7 +32,6 @@ class FakeCreateImagesRepository implements ICreateImagesRepository {
 }
 
 let createHouseService: CreateHouseService;
-const id = '1';
 const name = '산포리 펜션';
 
 const description =
