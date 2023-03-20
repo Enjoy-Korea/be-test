@@ -1,10 +1,10 @@
 import { IGetHouseByIdRepository } from '../../../src/house/interfaces';
 import { House } from '../../../src/entities';
 import { GetHouseByIdService } from '../../../src/house/services';
-import { houseFakers } from '../../fakers/house-fakers';
 import { BadRequestException } from '@nestjs/common';
+import { houseFakers } from '../../fakers/house-fakers';
 
-class FakeGetHouseByIdRepository implements IGetHouseByIdRepository {
+export class FakeGetHouseByIdRepository implements IGetHouseByIdRepository {
   constructor(private houses: House[]) {
     this.houses = houses;
   }
