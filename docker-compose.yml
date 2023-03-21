@@ -16,3 +16,4 @@ services:
     environment:
       - MYSQL_DATABASE=enkor-bnb
       - MYSQL_ROOT_PASSWORD=test1234!
+      - TZ=Asia/Seoul
