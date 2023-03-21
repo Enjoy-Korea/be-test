@@ -1,9 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { houseInfo } from '../../interfaces';
 
 export class GetReservationsResDto {
   @ApiProperty({ example: '329', description: '숙소 ID' })
   reservationId: string;
+
+  @ApiProperty({ example: '123', description: '하우스 ID' })
+  houseId: string;
 
   @ApiProperty({ example: '20230320', description: '체크인 날짜' })
   checkInAt: string;
@@ -18,15 +20,36 @@ export class GetReservationsResDto {
   totalPrice: number;
 
   @ApiProperty({
-    example: {
-      houseId: '2',
-      name: '산토리 펜션',
-      address: '경상북도 울진군 근남면 세포2길 1-21',
-      university: '울진대학교',
-      houseType: '펜션',
-      imageUrl:
-        'http://si.wsj.net/public/resources/images/OB-YO176_hodcol_H_20130815124744.jpg',
-    },
+    example: '2023-03-21T12:04:59.220Z',
+    description: '예약한 날짜',
   })
-  house: houseInfo;
+  createdAt: Date;
+
+  @ApiProperty({
+    example: '산토리 펜션',
+    description: '숙소 이름',
+  })
+  name: string;
+
+  @ApiProperty({
+    example: '경상북도 울진군 근남면 세포2길 1-21',
+    description: '숙소 주소',
+  })
+  address: string;
+
+  @ApiProperty({
+    example: '울진대학교',
+    description: '인근 대학',
+  })
+  university: string | null;
+
+  @ApiProperty({ example: '펜션', description: '숙소 타입' })
+  houseType: string;
+
+  @ApiProperty({
+    example:
+      'https://s3.wsj.net/public/resources/images/OB-YO176_hodcol_H_20130815124744.jpg',
+    description: '숙소 대표 사진',
+  })
+  imageUrl: string;
 }

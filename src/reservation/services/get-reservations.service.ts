@@ -4,7 +4,6 @@ import {
   IGetReservationsRepository,
 } from '../interfaces';
 import { GetReservationsRepository } from '../repositories';
-import { map, toArray } from '@fxts/core';
 
 @Injectable()
 export class GetReservationsService {
@@ -14,8 +13,6 @@ export class GetReservationsService {
   ) {}
 
   async execute(userId: string): Promise<GetReservationsServiceOutputDto[]> {
-    const reservations = await this.getReservationsRepository.execute(userId);
-    console.log(reservations);
-    return toArray(map((reservation) => reservation.getInfo(), reservations));
+    return await this.getReservationsRepository.execute(userId);
   }
 }
