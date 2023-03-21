@@ -24,22 +24,34 @@ export class GetHousesService {
     params: GetHousesServiceInputDto,
   ): Promise<GetHousesServiceOutputDto> {
     const totalCount = await this.getHouseTotalCountRepository.execute();
-    const lastPage = Math.floor(totalCount / params.getLimit());
-    if (params.getPage() > lastPage) {
+    if (!totalCount) {
+      return {
+        houses: [],
+        paginationInfo: {
+          currentPage: 1,
+          totalPage: 0,
+          hasNextPage: false,
+          hasPreviousPage: false,
+        },
+      };
+    }
+    const totalPage = Math.ceil(totalCount / params.getLimit());
+    if (params.getPage() > totalPage) {
       throw new BadRequestException('비정상적인 요청');
     }
     const houses = await this.getHousesRepository.execute({
       limit: params.getLimit(),
       order: params.getOrder(),
       skip: params.getSkip(),
-      sortBy: params.getSortBy(),
+      sort: params.getSort(),
     });
 
     return {
       houses: toArray(map((house) => house.getInfoForList(), houses)),
       paginationInfo: {
         currentPage: params.getPage(),
-        hasNextPage: params.getPage() < lastPage,
+        totalPage,
+        hasNextPage: params.getPage() < totalPage,
         hasPreviousPage: params.getPage() > 1,
       },
     };

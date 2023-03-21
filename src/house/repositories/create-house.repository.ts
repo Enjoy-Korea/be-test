@@ -21,6 +21,7 @@ export class CreateHouseRepository implements ICreateHouseRepository {
     }
 
     const house = this.houseRepository.create(params);
+    console.log(house);
     try {
       return await queryRunner.manager.save(house);
     } catch (err) {

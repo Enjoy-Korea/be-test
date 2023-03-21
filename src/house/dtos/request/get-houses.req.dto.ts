@@ -3,7 +3,7 @@ import { IsEnum, IsInt, IsOptional, Max, Min } from 'class-validator';
 import { Type } from 'class-transformer';
 import { Order } from '../../../commons';
 
-enum SortBy {
+export enum Sort {
   Date = 'createdAt',
   Price = 'pricePerDay',
 }
@@ -19,9 +19,9 @@ export class GetHousesReqDto {
   @Type(() => Number)
   page = 1;
 
-  @ApiPropertyOptional({ enum: SortBy, default: 'createdAt' })
-  @IsEnum(SortBy)
-  sortBy: SortBy = SortBy.Date;
+  @ApiPropertyOptional({ enum: Sort, default: 'createdAt' })
+  @IsEnum(Sort)
+  sort: Sort = Sort.Date;
 
   @ApiPropertyOptional({
     minimum: 5,
@@ -55,7 +55,7 @@ export class GetHousesReqDto {
     return (this.page - 1) * this.limit;
   }
 
-  public getSortBy(): string {
-    return this.sortBy;
+  public getSort(): string {
+    return this.sort;
   }
 }

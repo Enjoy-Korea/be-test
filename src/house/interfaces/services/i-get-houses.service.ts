@@ -4,12 +4,12 @@ export interface GetHousesServiceInputDto {
   page: number;
   limit: number;
   order: string;
-  sortBy: string;
+  sort: string;
   getPage(): number;
   getLimit(): number;
   getOrder(): string;
   getSkip(): number;
-  getSortBy(): string;
+  getSort(): string;
 }
 
 export interface HouseInfo {

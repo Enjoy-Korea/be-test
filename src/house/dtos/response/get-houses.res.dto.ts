@@ -5,6 +5,8 @@ export class PaginationInfo {
   @ApiProperty()
   currentPage: number;
   @ApiProperty()
+  totalPage: number;
+  @ApiProperty()
   hasNextPage: boolean;
   @ApiProperty()
   hasPreviousPage: boolean;

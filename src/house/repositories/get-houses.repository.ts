@@ -14,7 +14,7 @@ export class GetHousesRepository implements IGetHousesRepository {
   ) {}
 
   async execute(params: GetHousesRepositoryInputDto): Promise<House[]> {
-    const { sortBy } = params;
+    const { sort } = params;
     return await this.houseRepository.find({
       select: {
         id: true,
@@ -26,7 +26,7 @@ export class GetHousesRepository implements IGetHousesRepository {
         images: { key: true, url: true },
       },
       relations: { images: true },
-      order: { [sortBy]: params.order },
+      order: { [sort]: params.order },
       skip: params.skip,
       take: params.limit,
     });

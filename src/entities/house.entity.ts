@@ -20,9 +20,11 @@ export class House {
     houseType: string,
     pricePerDay: number,
     university: string | undefined = undefined,
-    id = '1',
+    id: string | undefined = undefined,
   ) {
-    this.id = id;
+    if (id) {
+      this.id = id;
+    }
     this.name = name;
     this.address = address;
     this.houseType = houseType;
@@ -88,6 +90,7 @@ export class House {
 
   public getInfoForList() {
     return {
+      houseId: this.id,
       name: this.name,
       university: this.university ?? null,
       houseType: this.houseType,

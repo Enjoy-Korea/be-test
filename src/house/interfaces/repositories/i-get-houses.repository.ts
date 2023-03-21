@@ -4,7 +4,7 @@ export interface GetHousesRepositoryInputDto {
   limit: number;
   skip: number;
   order: string;
-  sortBy: string;
+  sort: string;
 }
 
 export interface IGetHousesRepository {
