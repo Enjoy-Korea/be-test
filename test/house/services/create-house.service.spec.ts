@@ -3,10 +3,7 @@ import {
   CreateHouseRepositoryInputDto,
   ICreateHouseRepository,
 } from '../../../src/house/interfaces';
-import {
-  CreateImagesRepositoryInputDto,
-  ICreateImagesRepository,
-} from '../../../src/image/interfaces/i-create-images.repository';
+import { ICreateImagesRepository } from '../../../src/image/interfaces/i-create-images.repository';
 import { CreateHouseService } from '../../../src/house/services';
 
 class FakeCreateHouseRepository implements ICreateHouseRepository {
@@ -26,7 +23,7 @@ class FakeCreateHouseRepository implements ICreateHouseRepository {
 }
 
 class FakeCreateImagesRepository implements ICreateImagesRepository {
-  async execute(params: CreateImagesRepositoryInputDto): Promise<void> {
+  async execute(): Promise<void> {
     return Promise.resolve();
   }
 }

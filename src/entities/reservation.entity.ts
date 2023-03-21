@@ -74,7 +74,7 @@ export class Reservation {
         address: this.house.address,
         university: this.house.university ?? null,
         houseType: this.house.houseType,
-        imageUrl: this.house.images![0].url,
+        imageUrl: this.house.images[0].url,
       },
     };
   }

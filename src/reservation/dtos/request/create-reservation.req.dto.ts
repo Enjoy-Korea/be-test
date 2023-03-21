@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsAlphanumeric, IsString, Length, Min } from 'class-validator';
+import { IsAlphanumeric, IsString, Length } from 'class-validator';
 
 export class CreateReservationReqDto {
   @IsAlphanumeric()

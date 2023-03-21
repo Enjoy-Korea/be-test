@@ -22,7 +22,6 @@ export class CreateHouseService {
   ): Promise<CreateHouseServiceOutputDto> {
     const { images } = params;
     const house = await this.createHouseRepository.execute(params);
-    console.log(house);
     await this.createImagesRepository.execute({
       houseId: house.getId().houseId,
       images,
