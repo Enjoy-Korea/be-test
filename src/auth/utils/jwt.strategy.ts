@@ -1,10 +1,10 @@
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
-import { TokenPayload } from '../../commons/types/token-payload';
+import { TokenPayload } from '../../commons';
 import { ConfigService } from '@nestjs/config';
-import { IGetUserByIdRepository } from '../interfaces/repositories/i-get-user-by-id.repository';
-import { GetUserByIdRepository } from '../repositories/get-user-by-id.repository';
+import { IGetUserByIdRepository } from '../interfaces';
+import { GetUserByIdRepository } from '../repositories';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
@@ -21,7 +21,6 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
           if (req && req.cookies) {
             token = req.cookies['Authorization'];
           }
-          console.log(token);
           return token;
         },
       ]),

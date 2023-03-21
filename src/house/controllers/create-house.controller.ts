@@ -1,8 +1,9 @@
-import { Body, Controller, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Inject, Post, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ICreateHouseService } from '../interfaces';
 import { CreateHouseService } from '../services';
 import { CreateHouseReqDto, CreateHouseResDto } from '../dtos';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('api/houses')
 export class CreateHouseController {
@@ -18,6 +19,7 @@ export class CreateHouseController {
     type: CreateHouseResDto,
   })
   @ApiTags('House')
+  @UseGuards(AuthGuard('jwt'))
   @Post()
   async createHouse(
     @Body() createHouseReqDto: CreateHouseReqDto,

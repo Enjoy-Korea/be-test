@@ -6,6 +6,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SignupReqDto, SignupResDto } from '../dtos';
 import { TokenPayload } from '../../commons';
 import { Response } from 'express';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('api/auth')
 export class SignupController {
@@ -14,6 +15,7 @@ export class SignupController {
     private readonly singupService: ISignupService,
     @Inject(JwtService)
     private jwtService: IJwtService,
+    private configService: ConfigService,
   ) {}
 
   @ApiOperation({ summary: '회원가입' })
@@ -33,11 +35,11 @@ export class SignupController {
       userId,
     };
     const accessToken = this.jwtService.sign(payload, {
-      secret: process.env.JWT_SECRET,
+      secret: this.configService.get<string>('JWT_SECRET'),
     });
     response.cookie('Authorization', accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: this.configService.get<string>('NODE_ENV') === 'production',
     });
     return { userId };
   }

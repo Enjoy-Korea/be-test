@@ -10,7 +10,7 @@ export class GetUserByIdRepository implements IGetUserByIdRepository {
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
 
-  async execute(userId: string): Promise<User | null> {
-    return await this.userRepository.findOneBy({ id: userId });
+  async execute(userId: string): Promise<boolean> {
+    return await this.userRepository.exist({ where: { id: userId } });
   }
 }

@@ -6,6 +6,7 @@ import { Response } from 'express';
 import { LoginResDto, LoginReqDto } from '../dtos';
 import { TokenPayload } from '../../commons';
 import { LoginService } from '../services';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('api/auth/login')
 export class LoginController {
@@ -14,6 +15,7 @@ export class LoginController {
     private readonly loginInboundPort: ILoginService,
     @Inject(JwtService)
     private jwtService: IJwtService,
+    private configService: ConfigService,
   ) {}
 
   @ApiOperation({ summary: '로그인' })
@@ -30,11 +32,11 @@ export class LoginController {
       userId,
     };
     const accessToken = this.jwtService.sign(payload, {
-      secret: process.env.JWT_SECRET,
+      secret: this.configService.get<string>('JWT_SECRET'),
     });
     response.cookie('Authorization', accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: this.configService.get<string>('NODE_ENV') === 'production',
     });
     return { userId };
   }
