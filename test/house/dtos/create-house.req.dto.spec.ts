@@ -1,7 +1,7 @@
 import { CreateHouseReqDto } from '../../../src/house/dtos';
 import { plainToInstance } from 'class-transformer';
-import { validate } from 'class-validator';
 import { map, pipe, range, toArray } from '@fxts/core';
+import { _validate } from '../../utils/validate';
 
 let university: string | undefined;
 let houseType: string;
@@ -12,9 +12,7 @@ describe('CreateHouseReqDto 유닛 테스트', () => {
   test('enum에 속하지 않는 houseType에 대해 에러를 반환한다.', async () => {
     houseType = '팬션';
     const createHouseReqDto = plainToInstance(CreateHouseReqDto, { houseType });
-    const errors = await validate(createHouseReqDto, {
-      skipMissingProperties: true,
-    });
+    const errors = await _validate(createHouseReqDto);
     expect(errors.length).not.toBe(0);
   });
 
@@ -22,9 +20,7 @@ describe('CreateHouseReqDto 유닛 테스트', () => {
     const createHouseReqDto = plainToInstance(CreateHouseReqDto, {
       university,
     });
-    const errors = await validate(createHouseReqDto, {
-      skipMissingProperties: true,
-    });
+    const errors = await _validate(createHouseReqDto);
     expect(errors.length).toBe(0);
   });
 
@@ -33,9 +29,7 @@ describe('CreateHouseReqDto 유닛 테스트', () => {
     const createHouseReqDto = plainToInstance(CreateHouseReqDto, {
       pricePerDay,
     });
-    const errors = await validate(createHouseReqDto, {
-      skipMissingProperties: true,
-    });
+    const errors = await _validate(createHouseReqDto);
     expect(errors.length).not.toBe(0);
   });
 
@@ -44,9 +38,7 @@ describe('CreateHouseReqDto 유닛 테스트', () => {
     const createHouseReqDto = plainToInstance(CreateHouseReqDto, {
       images: [{ url, key: 1 }],
     });
-    const errors = await validate(createHouseReqDto, {
-      skipMissingProperties: true,
-    });
+    const errors = await _validate(createHouseReqDto);
     expect(errors.length).not.toBe(0);
   });
 
@@ -55,9 +47,7 @@ describe('CreateHouseReqDto 유닛 테스트', () => {
     const createHouseReqDto = plainToInstance(CreateHouseReqDto, {
       images: [{ url, key: 1 }],
     });
-    const errors = await validate(createHouseReqDto, {
-      skipMissingProperties: true,
-    });
+    const errors = await _validate(createHouseReqDto);
     expect(errors.length).toBe(0);
   });
 
@@ -70,9 +60,7 @@ describe('CreateHouseReqDto 유닛 테스트', () => {
         toArray,
       ),
     });
-    const errors = await validate(createHouseReqDto, {
-      skipMissingProperties: true,
-    });
+    const errors = await _validate(createHouseReqDto);
     expect(errors.length).not.toBe(0);
   });
 });
