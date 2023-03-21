@@ -9,12 +9,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppConfigModule } from './config/app-config.module';
 import { TypeormConfigService } from './config/typeorm-config.service';
 import { AuthModule } from './auth/auth.module';
-import * as Joi from '@hapi/joi';
 import { APP_PIPE } from '@nestjs/core';
 import { HouseModule } from './house/house.module';
 import { ImageModule } from './image/image.module';
 import { ReservationModule } from './reservation/reservation.module';
 import * as cookieParser from 'cookie-parser';
+import * as Joi from 'joi';
 import { SetTransactionMiddleware } from './commons';
 
 @Module({
