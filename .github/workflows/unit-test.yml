@@ -1,0 +1,35 @@
+name: Enkor Server Unit Test
+
+on:
+  pull_request:
+    branches: [develop]
+
+jobs:
+  unit-test:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Get code from repository
+        uses: actions/checkout@v3
+
+      - name: Use Node.js v.18
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.15.0'
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        id: cache-dependencies
+        with:
+          path: '**/node_modules'
+          key: npm-deps-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install Dependencies
+        if: ${{ steps.cache-dependencies.outputs.cache-hit != 'true' }}
+        run: npm ci
+
+      - name: Build Project
+        run: npm run build
+
+      - name: Unit Test
+        run: npm run test
