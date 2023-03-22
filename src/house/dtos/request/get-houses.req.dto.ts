@@ -4,8 +4,8 @@ import { Type } from 'class-transformer';
 import { Order } from '../../../commons';
 
 export enum Sort {
-  Date = 'createdAt',
-  Price = 'pricePerDay',
+  Date = 'date',
+  Price = 'price',
 }
 
 export class GetHousesReqDto {
@@ -56,6 +56,6 @@ export class GetHousesReqDto {
   }
 
   public getSort(): string {
-    return this.sort;
+    return this.sort === 'date' ? 'createdAt' : 'pricePerDay';
   }
 }

@@ -5,7 +5,7 @@ import {
   IGetHouseTotalCountRepository,
   IGetHousesRepository,
 } from '../interfaces';
-import { map, toArray } from '@fxts/core';
+import { map, pipe, toArray } from '@fxts/core';
 import {
   GetHouseTotalCountRepository,
   GetHousesRepository,
@@ -47,7 +47,11 @@ export class GetHousesService {
     });
 
     return {
-      houses: toArray(map((house) => house.getInfoForList(), houses)),
+      houses: pipe(
+        houses,
+        map((house) => house.getInfoForList()),
+        toArray,
+      ),
       paginationInfo: {
         currentPage: params.getPage(),
         totalPage,

@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { Image } from './image.entity';
 import { houseTypesEnum } from '../commons';
-import { map, toArray } from '@fxts/core';
+import { map, pipe, toArray } from '@fxts/core';
 
 @Entity({ name: 'houses' })
 export class House {
@@ -75,11 +75,10 @@ export class House {
       university: this.university ?? null,
       houseType: this.houseType,
       pricePerDay: this.pricePerDay,
-      images: toArray(
-        map(
-          (image: Image) => ({ url: image.url, key: image.key }),
-          this.images,
-        ),
+      images: pipe(
+        this.images,
+        map((image: Image) => ({ url: image.url, key: image.key })),
+        toArray,
       ),
     };
   }
@@ -95,7 +94,11 @@ export class House {
       university: this.university ?? null,
       houseType: this.houseType,
       pricePerDay: this.pricePerDay,
-      images: this.images,
+      images: pipe(
+        this.images,
+        map((image) => ({ key: image.key, url: image.url })),
+        toArray,
+      ),
     };
   }
 }

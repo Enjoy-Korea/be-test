@@ -23,7 +23,7 @@ export class GetHousesRepository implements IGetHousesRepository {
         houseType: true,
         pricePerDay: true,
         createdAt: true,
-        images: { key: true, url: true },
+        // images: { key: true, url: true },
       },
       relations: { images: true },
       order: { [sort]: params.order },

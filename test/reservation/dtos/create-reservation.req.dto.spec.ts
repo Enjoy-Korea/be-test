@@ -8,7 +8,7 @@ let checkOutAt: string;
 
 describe('CreateHouseReqDto 유닛 테스트', () => {
   test('1 미만의 houseId에 대해 에러를 반환한다.', async () => {
-    houseId = '1';
+    houseId = '0';
     const createHouseReqDto = plainToInstance(CreateReservationReqDto, {
       houseId,
     });
