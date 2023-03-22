@@ -11,8 +11,8 @@ import { ForbiddenException } from '@nestjs/common/exceptions';
 export class AuthService {
   constructor(
     private userService: UserService,
-    private jwtService: JwtService,       // JSON Web Toekn을 생성하고 검증하는 서비스
-    private configService: ConfigService, // JWT의 비밀키와 만료시간을 설정한다. 
+    private jwtService: JwtService,       
+    private configService: ConfigService,  
   ) { }
 
   async signUp(createUserDto: CreateUserDto) {
@@ -26,7 +26,6 @@ export class AuthService {
     const hash = await this.hashData(createUserDto.password);
     const newUser = await this.userService.create({ ...createUserDto, password: hash });
 
-    // accessToken, refreshToken 2개의 토큰을 생성한다. 
     const tokens = await this.getTokens(newUser.id.toString(), newUser.email);
     await this.updateRefreshToken(newUser.id.toString(), tokens.refreshToken);
 
@@ -43,7 +42,6 @@ export class AuthService {
     
     const tokens = await this.getTokens(user.id.toString(), user.email);
     await this.updateRefreshToken(user.id.toString(), tokens.refreshToken);
-    console.log('tokens', tokens);
     return tokens;
   }
 
@@ -62,23 +60,13 @@ export class AuthService {
     });
   }
 
-  /**
-   * 
-   * @param userId 
-   * @param email 
-   * @returns 
-   * 
-   * 사용자 ID와 email을 인자로 받아 Access Token과 Refresh Token을 생성하고 반환
-   * jwtService.signAsync 메서드를 통해 JWT Access Token과 Refrest Token을 생성하고, 각각의 secret과 만료시간을 설정해주고 있다. 
-   * 생성된 Token들은 Promise.all을 이용해 한번에 생성되고, 생성된 Token들을 Object형태로 묶어서 반환한다. 
-   */
   async getTokens(userId: string, email: string) {
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(
         {
           sub: userId,
           email,
-        },    // JWT payload에 들어갈 내용을 객체 형태로 정의, sub는 JWT의 subject의미. 즉, JWT 발급받은 사용자의 식별자, email은 해당 사용자의 email정보. 이는 JWT에 필수적인 정보는 아니지만, 사용자의 추가 정보를 JWT에 담아두는 용도로 사용할 수 있다. 즉 userId와 email정보를 JWT payload에 담아서 반환할 수 있게 해준다. 
+        },     
         {
           secret: this.configService.get<string>('JWT_ACCESS_SECRET'),
           expiresIn: '60m',

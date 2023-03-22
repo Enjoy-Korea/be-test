@@ -13,6 +13,7 @@ import { Image } from './image/image.entity';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { SoldModule } from './sold/sold.module';
+import { Sold } from './sold/sold.entity';
 
 @Module({
   imports: [
@@ -22,8 +23,10 @@ import { SoldModule } from './sold/sold.module';
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db.enkor',
-      entities: [User, Reservation, House, Image],
+      entities: [User, Reservation, Sold, House, Image],
+      dropSchema: true,
       synchronize: true,
+      logging: true
     }),
     UserModule,
     ReservationModule,

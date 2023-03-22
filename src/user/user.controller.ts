@@ -10,11 +10,20 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
+import { CurrentUser } from './decorators/current-user.decorator';
+import { UseGuards } from '@nestjs/common';
+import { AccessTokenGuard } from 'src/common/guards/accessToken.guard';
 
+@UseGuards(AccessTokenGuard)
 @Controller('user')
 export class UserController {
 
     constructor(private readonly usersService: UserService) { }
+
+    @Get("/whoami")
+    decoratorTest(@CurrentUser() user:any) {
+        return user;
+    }
 
     @Post()
     create(@Body() createUserDto: CreateUserDto) {

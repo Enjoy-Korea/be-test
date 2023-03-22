@@ -1,12 +1,17 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { House } from 'src/house/house.entity';
+import { Entity, Column, ManyToOne, JoinColumn, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Image {
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     id: number
 
+    @ManyToOne(() => House, (house) => house.images)
+    @JoinColumn()
+    house: House;
+
     @Column()
-    url: string;    // 이미 URL주소에 유효성검사는 URL객체를 통해서 다 끝나고 string으로 변형된 상태
+    url: string;
 
     @Column()
     key: number;

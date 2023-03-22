@@ -1,3 +1,4 @@
+import { Reservation } from 'src/reservation/reservation.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
 
 @Entity()
@@ -15,6 +16,6 @@ export class User {
     @Column({ nullable: true, name: "refresh_token" })
     refreshToken: string;
 
-    // @OneToMany(() => Space, (space) => space.user)
-    // spaces: Space[];
+    @OneToMany(() => Reservation, (reservation) => reservation.user)
+    reservations: Reservation[];
 }

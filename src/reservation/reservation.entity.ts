@@ -1,19 +1,23 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { House } from 'src/house/house.entity';
+import { User } from 'src/user/user.entity';
+import { Entity, ManyToOne, JoinColumn, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Reservation {
-    @PrimaryGeneratedColumn()
-    id: number;
-    // FK1
+    @PrimaryColumn()
+    userId: number;
 
-    // FK2
+    @PrimaryColumn()
+    houseId:number
 
-    @Column()
-    guestNumber: number;
+    @PrimaryColumn()
+    date: Date
 
-    @Column()
-    checkInAt: Date
+    @ManyToOne(() => User, (user) => user.reservations, { eager: true })
+    @JoinColumn()
+    user: User;
 
-    @Column()
-    checkOutAt: Date
+    @ManyToOne(() => House, (house) => house.reservations, { eager: true })
+    @JoinColumn()
+    house: House;
 }
