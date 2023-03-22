@@ -30,10 +30,10 @@ export class Reservation {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: string;
 
-  @Column()
+  @Column({ type: 'bigint' })
   userId: string;
 
-  @Column()
+  @Column({ type: 'bigint' })
   houseId: string;
 
   @Column({ type: 'char', length: 8 })
@@ -59,23 +59,5 @@ export class Reservation {
 
   public getId() {
     return { reservationId: this.id };
-  }
-
-  public getInfo() {
-    return {
-      reservationId: this.id,
-      checkInAt: this.checkInAt,
-      checkOutAt: this.checkOutAt,
-      duration: this.duration,
-      totalPrice: this.totalPrice,
-      house: {
-        houseId: this.houseId,
-        name: this.house.name,
-        address: this.house.address,
-        university: this.house.university ?? null,
-        houseType: this.house.houseType,
-        imageUrl: this.house.images[0].url,
-      },
-    };
   }
 }
