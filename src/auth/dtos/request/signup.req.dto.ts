@@ -19,9 +19,7 @@ export class SignupReqDto {
   email: string;
 
   @IsString()
-  @Matches(/^(?=.*[a-z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]/, {
-    message: '잘못된 비밀번호 형식',
-  })
+  @Matches(/^(?=.*[a-z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]/)
   @MinLength(8)
   @MaxLength(16)
   @ApiProperty({

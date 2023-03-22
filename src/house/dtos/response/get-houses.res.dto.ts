@@ -2,13 +2,22 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsArray } from 'class-validator';
 
 export class PaginationInfo {
-  @ApiProperty()
+  @ApiProperty({ example: 1, description: '현재 페이지' })
   currentPage: number;
-  @ApiProperty()
+
+  @ApiProperty({ example: 10, description: '전체 페이지 수' })
   totalPage: number;
-  @ApiProperty()
+
+  @ApiProperty({
+    example: true,
+    description: '다음 페이지 존재 여부 | true 또는 false',
+  })
   hasNextPage: boolean;
-  @ApiProperty()
+
+  @ApiProperty({
+    example: false,
+    description: '이전 페이지 존재 여부 | true 또는 false',
+  })
   hasPreviousPage: boolean;
 }
 

@@ -21,11 +21,21 @@ import { houseTypesEnum } from '../../../commons';
 export class Thumbnail {
   @IsUrl()
   @MaxLength(255)
+  @ApiProperty({
+    example: 'https://s3.enkor.com/thumbnails/1234',
+    description: '썸네일 이미지 주소',
+    required: true,
+  })
   url: string;
 
   @IsNumber()
   @Min(1)
-  @Max(10)
+  @Max(5)
+  @ApiProperty({
+    example: 1,
+    description: '썸네일 이미지 Sequence',
+    required: true,
+  })
   key: number;
 }
 
@@ -104,7 +114,7 @@ export class CreateHouseReqDto {
         key: 3,
       },
     ],
-    description: '숙소 사진 url',
+    description: '숙소 사진 url | 5개 이하',
     required: true,
   })
   images: Thumbnail[];
