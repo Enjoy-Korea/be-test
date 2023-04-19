@@ -23,7 +23,6 @@ export class RefreshStrategy extends PassportStrategy(Strategy, 'refresh') {
 
   async validate(payload: Payload, done: VerifiedCallback) {
     const user = await this.authService.tokenValidateUser(payload);
-    console.log(user);
     if (!user) {
       return done(
         new UnauthorizedException({ message: '존재 하지 않는 유저' }),

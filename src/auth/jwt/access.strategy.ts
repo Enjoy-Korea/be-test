@@ -18,8 +18,6 @@ export class AccessStrategy extends PassportStrategy(Strategy, 'access') {
 
   async validate(payload: Payload, done: VerifiedCallback): Promise<any> {
     const user = await this.authService.tokenValidateUser(payload);
-    console.log(user);
-
     if (!user) {
       return done(
         new UnauthorizedException({ message: '존재 하지 않는 유저' }),
