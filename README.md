@@ -55,7 +55,7 @@ TypeScript, NestJS, TypeOrm, MySql, JWT
 
 ## ERD
 
-![image](https://github.com/TaeHyeongKwon/be-test/blob/TaeHyeong/img/enkor-bnb-erd.png?raw=true)
+![image](https://github.com/TaeHyeongKwon/be-test/blob/TaeHyeong/img/enkor-erd.png?raw=true)
 
 ## ENV
 
