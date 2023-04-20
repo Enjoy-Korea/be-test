@@ -12,7 +12,7 @@ import { ReservationsService } from './reservations.service';
 import { CreateReservationDto } from './dto/create.reservation.dto';
 import { AccessTokenGuard } from 'src/auth/jwt/access.guard';
 import { User } from 'src/entities/user.entity';
-import { GetUser } from 'src/decorater/get.user.decorater';
+import { GetUser } from 'src/decorator/get.user.decorator';
 
 @Controller('reservations')
 @UseGuards(AccessTokenGuard)
