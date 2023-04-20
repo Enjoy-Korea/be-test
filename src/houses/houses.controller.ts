@@ -3,6 +3,7 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  Param,
   Query,
   UsePipes,
   ValidationPipe,
@@ -19,5 +20,11 @@ export class HousesController {
   @Get('/list')
   findHouseList(@Query() findAllHouseDto: FindAllHouseDto) {
     return this.housesService.findHouseList(findAllHouseDto);
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @Get(':id')
+  findOne(@Param('id') id: number) {
+    return this.housesService.findHouse(id);
   }
 }

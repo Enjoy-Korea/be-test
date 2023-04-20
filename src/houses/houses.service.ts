@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { FindAllHouseDto } from './dto/findall-house.dto';
 import { House } from 'src/entities/house.entity';
 import { Repository } from 'typeorm';
@@ -26,7 +26,9 @@ export class HousesService {
     });
   }
 
-  async findOne(id: number) {
-    return `This action returns a #${id} house`;
+  async findHouse(id: number): Promise<House> {
+    const houseInfo = await this.houseRepository.findOne({ where: { id } });
+    if (!houseInfo) throw new NotFoundException('없는 숙소 입니다.');
+    return houseInfo;
   }
 }
