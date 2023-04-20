@@ -43,4 +43,12 @@ export class ReservationsService {
       },
     });
   }
+
+  //사용자의 예약 리스트 조회
+  async getMyReservation(userId: number): Promise<object[]> {
+    return await this.reservationRepository.find({
+      where: { userId },
+      select: ['houseId', 'check_in', 'check_out'],
+    });
+  }
 }
