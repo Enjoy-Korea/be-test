@@ -73,6 +73,7 @@ export class AuthService {
   async createAccessToken(payload: Payload): Promise<string> {
     const accessToken = await this.jwtService.sign(payload, {
       secret: process.env.ACCESS_JWT_SECRET,
+      expiresIn: '5m',
     });
     return accessToken;
   }
@@ -80,6 +81,7 @@ export class AuthService {
   async createRefreshToken(payload: Payload): Promise<string> {
     const refreshToken = await this.jwtService.sign(payload, {
       secret: process.env.REFRESH_JWT_SECRET,
+      expiresIn: '24h',
     });
     return refreshToken;
   }
