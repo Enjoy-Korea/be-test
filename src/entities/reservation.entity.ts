@@ -1,9 +1,9 @@
 import {
+  BeforeInsert,
   Column,
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User } from './user.entity';
@@ -15,15 +15,28 @@ export class Reservation {
   id: number;
 
   @ManyToOne(() => User, (user) => user.reservations)
+  @JoinColumn({ name: 'userId' })
   user: User;
 
-  @OneToOne(() => House, (house) => house.reservation)
-  @JoinColumn()
+  @ManyToOne(() => House, (house) => house.reservation)
+  @JoinColumn({ name: 'houseId' })
   house: House;
 
   @Column()
-  check_in: Date;
+  houseId: number;
 
   @Column()
-  check_out: Date;
+  userId: number;
+
+  @Column()
+  check_in: string;
+
+  @Column()
+  check_out: string;
+
+  @BeforeInsert()
+  async convertDates() {
+    this.check_in = new Date(this.check_in).toISOString();
+    this.check_out = new Date(this.check_out).toISOString();
+  }
 }

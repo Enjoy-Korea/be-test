@@ -1,4 +1,4 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Reservation } from './reservation.entity';
 
 @Entity()
@@ -6,7 +6,7 @@ export class House {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => Reservation, (reservation) => reservation.house)
+  @OneToMany(() => Reservation, (reservation) => reservation.house)
   reservation: Reservation;
 
   @Column()
