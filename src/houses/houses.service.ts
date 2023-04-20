@@ -11,12 +11,9 @@ export class HousesService {
   ) {}
 
   async findHouseList(findAllHouseDto: FindAllHouseDto): Promise<object[]> {
-    const page = findAllHouseDto.page ? findAllHouseDto.page : 1;
-    const sort = findAllHouseDto.sort ? findAllHouseDto.sort : 'ASC';
-
     return await this.houseRepository.find({
-      order: { pricePerDay: sort },
-      skip: 4 * (page - 1),
+      order: { pricePerDay: findAllHouseDto.sort },
+      skip: 4 * (Number(findAllHouseDto.page) - 1),
       take: 4,
       select: [
         'id',
@@ -27,5 +24,9 @@ export class HousesService {
         'pricePerDay',
       ],
     });
+  }
+
+  async findOne(id: number) {
+    return `This action returns a #${id} house`;
   }
 }
