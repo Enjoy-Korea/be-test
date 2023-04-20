@@ -9,7 +9,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { HousesService } from './houses.service';
-import { FindAllHouseDto } from './dto/findall-house.dto';
+import { FindAllHouseDto } from './dto/findall.house.dto';
 
 @Controller('houses')
 export class HousesController {

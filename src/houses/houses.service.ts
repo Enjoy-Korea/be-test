@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { FindAllHouseDto } from './dto/findall-house.dto';
+import { FindAllHouseDto } from './dto/findall.house.dto';
 import { House } from 'src/entities/house.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
