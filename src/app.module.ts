@@ -9,6 +9,7 @@ import { User } from './entities/user.entity';
 import { House } from './entities/house.entity';
 import { Reservation } from './entities/reservation.entity';
 import { HousesModule } from './houses/houses.module';
+import { ReservationsModule } from './reservations/reservations.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { HousesModule } from './houses/houses.module';
     }),
     AuthModule,
     HousesModule,
+    ReservationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
