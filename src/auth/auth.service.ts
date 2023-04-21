@@ -8,7 +8,7 @@ import { SignUpDto } from './dto/signup.dto';
 import { UserService } from './user.service';
 import * as bcrypt from 'bcrypt';
 import { Payload } from './jwt/jwt.payload.interface';
-import { User } from 'src/entities/user.entity';
+import { User } from '../entities/user.entity';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from './dto/login.dto';
 

@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Reservation } from 'src/entities/reservation.entity';
+import { Reservation } from '../entities/reservation.entity';
 import { LessThan, MoreThan, Repository } from 'typeorm';
 import { ReservationInfo } from './interface/reservation.interface';
 
