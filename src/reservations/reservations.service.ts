@@ -46,9 +46,17 @@ export class ReservationsService {
 
   //사용자의 예약 리스트 조회
   async getMyReservation(userId: number): Promise<object[]> {
-    return await this.reservationRepository.find({
-      where: { userId },
-      select: ['houseId', 'check_in', 'check_out'],
-    });
+    return await this.reservationRepository
+      .createQueryBuilder('reservation')
+      .leftJoinAndSelect('reservation.house', 'house')
+      .select([
+        'reservation.houseId',
+        'reservation.check_in',
+        'reservation.check_out',
+        'house.name',
+        'house.address',
+      ])
+      .where('reservation.userId = :userId', { userId })
+      .getRawMany();
   }
 }
