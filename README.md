@@ -49,6 +49,10 @@ $ npm i
 
 $ npm run start:dev
 
+## 테스트
+
+$ npm run test:watch
+
 ## 기술스택
 
 TypeScript, NestJS, TypeOrm, MySql, JWT
