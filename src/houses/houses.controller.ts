@@ -18,13 +18,13 @@ export class HousesController {
   @HttpCode(HttpStatus.OK)
   @UsePipes(ValidationPipe)
   @Get('/list')
-  findHouseList(@Query() findAllHouseDto: FindAllHouseDto) {
-    return this.housesService.findHouseList(findAllHouseDto);
+  async findHouseList(@Query() findAllHouseDto: FindAllHouseDto) {
+    return await this.housesService.findHouseList(findAllHouseDto);
   }
 
   @HttpCode(HttpStatus.OK)
   @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.housesService.findHouse(id);
+  async findHouse(@Param('id') id: number) {
+    return await this.housesService.findHouse(id);
   }
 }
