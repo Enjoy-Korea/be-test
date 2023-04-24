@@ -1,10 +1,20 @@
-import { Controller, Get, Param, Post, Query, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Post,
+  Query,
+  Body,
+  UseGuards,
+} from '@nestjs/common';
 import { HouseService } from './house.service';
 import { Houses } from 'src/repositories/entity/houses.entity';
 import { CreateHouseDTO } from './interface/house.dto';
 import { HouseImagesDTO } from './interface/houseimage.dto';
 import { HouseImages } from 'src/repositories/entity/houseimages.entity';
+import { AuthGuard } from 'src/auth/guard/guard';
 
+@UseGuards(AuthGuard)
 @Controller('house')
 export class HouseController {
   constructor(private readonly houseService: HouseService) {}

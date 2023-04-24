@@ -31,7 +31,7 @@ export class RepositoriesService {
     private bookingsRepository: Repository<Bookings>,
   ) {}
 
-  async createUser(userInfo: UserDTO): Promise<SignUpResult> {
+  async upsertUser(userInfo: UserDTO): Promise<SignUpResult> {
     try {
       await this.usersRepository.save(userInfo);
       return { email: userInfo.email, message: 'signUp' };
