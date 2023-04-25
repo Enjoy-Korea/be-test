@@ -5,7 +5,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { RepositoriesService } from '../repositories/repositories.service';
-import { UserDTO } from './interface/auth.dto';
+import { UserDTO, LogOutDTO } from './interface/auth.dto';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
@@ -90,7 +90,7 @@ export class AuthService {
     return { accessToken };
   }
 
-  async userlogout(userlogoutInfo: UserDTO) {
+  async userlogout(userlogoutInfo: LogOutDTO) {
     const user = await this.repositoriesService.getUser(userlogoutInfo.email);
     user.refreshToken = '';
 

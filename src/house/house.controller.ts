@@ -13,8 +13,9 @@ import { CreateHouseDTO } from './interface/house.dto';
 import { HouseImagesDTO } from './interface/houseimage.dto';
 import { HouseImages } from 'src/repositories/entity/houseimages.entity';
 import { AuthGuard } from 'src/auth/guard/guard';
+import { ApiQuery, ApiParam } from '@nestjs/swagger';
 
-// @UseGuards(AuthGuard)
+@UseGuards(AuthGuard)
 @Controller('house')
 export class HouseController {
   constructor(private readonly houseService: HouseService) {}
@@ -24,11 +25,26 @@ export class HouseController {
     return this.houseService.createHouse(newHouesInfo);
   }
 
+  @ApiParam({
+    name: 'houseId',
+  })
   @Get('/:houseid')
   async getHouseDetail(@Param('houseid') houseId: number) {
     return this.houseService.getHouseDetail(houseId);
   }
 
+  @ApiQuery({
+    name: 'start',
+  })
+  @ApiQuery({
+    name: 'limit',
+  })
+  @ApiQuery({
+    name: 'sort',
+  })
+  @ApiQuery({
+    name: 'order',
+  })
   @Get()
   async getHousesList(
     @Query('start') start = 0,
@@ -39,6 +55,9 @@ export class HouseController {
     return this.houseService.getHouseList(start, end, sort, order);
   }
 
+  @ApiParam({
+    name: 'houseId',
+  })
   @Post('/:houseId/image')
   async createHouseImage(
     @Param('houseId') houseId: number,
