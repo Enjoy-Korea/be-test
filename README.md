@@ -1,73 +1,49 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# enkor-bnb 최의림
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## 필수 스택
+- Node.js 14 이상
+- Express.js or Nest.js
+- MySQL or Sqlite
+- Typescript or Javascript
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 구현 기능
+숙박 플랫폼을 서비스하기 위한 REST API를 구현해야 합니다.
 
-## Description
+- 회원 기능
+    - [x] 회원 가입
+    - [x] 로그인
+    - [x] 회원 가입 및 로그인은 이메일을 사용합니다.
+    - [x] 비밀번호는 암호화 되어야 합니다.
+    - [x] JWT만을 이용해 인증기능이 구현되어야 합니다.
+- 매물 조회 기능
+    - [x] 매물 정보: 타이틀, 주변대학, 매물 타입, 이미지 URL, 설명, 주소, 가격.
+    - [x] 사용자는 매물 리스트를 볼 수 있어야 합니다. 페이지네이션이 필요합니다. 리스트에는 타이틀, 주변대학, 이미지, 매물 타입, 가격이 나옵니다.
+    - [x] 사용자는 상품 리스트를 가격순으로 정렬할 수 있습니다.
+    - [x] 사용자는 상품 상세 정보를 볼 수 있어야 합니다.
+## 구현 시 우대사항
+- 숙박 예약
+    - [x] 사용자는 숙박 시설을 예약할 수 있어야 합니다.
+    - [x] 사용자는 예약한 내용을 확인할 수 있어야 합니다.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 우대사항
+- [x] Typescript 사용
+- [x] 유닛 테스트 (일부 로직 테스트 진행)
+- [x] 문서화
 
-## Installation
 
-```bash
-$ npm install
-```
+# 개발 내용
+## ERD
+![image](https://user-images.githubusercontent.com/91925895/234318434-11955c2d-8ad6-4a44-bd50-731136cf8483.png)
 
-## Running the app
+## 프로젝트 실행 방법
+- 의존성 설치
+  - npm i 
+- 개발 환경 실행
+  - npm run start:dev
+- 유닛 테스트 진행
+  - npm run test 
 
-```bash
-# development
-$ npm run start
+## api 문서
+- 프로젝트 로컬 실행 후 웹을 통해 localhost:3000/api 접속 
+![image](https://user-images.githubusercontent.com/91925895/234319958-58f46767-d9d0-49cc-b57b-c8ecfa124fed.png)
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
