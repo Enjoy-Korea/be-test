@@ -4,8 +4,8 @@ import { BaseEntity } from './base.entity';
 
 @Entity({ name: 'house_images' })
 export class HouseImages extends BaseEntity {
-  @PrimaryGeneratedColumn({ name: 'house_images_id' })
-  houseImageId: number;
+  @PrimaryGeneratedColumn()
+  id?: number;
 
   @Column()
   url: string;
@@ -13,6 +13,6 @@ export class HouseImages extends BaseEntity {
   @Column()
   key: number;
 
-  @ManyToOne(() => Houses, (house) => house.houseImages)
-  houses: Houses;
+  @ManyToOne(() => Houses, (house) => house.images)
+  houses?: Houses;
 }

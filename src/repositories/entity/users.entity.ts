@@ -5,11 +5,11 @@ import { toUSVString } from 'util';
 
 @Entity({ name: 'users' })
 export class Users extends BaseEntity {
-  @PrimaryGeneratedColumn({ name: 'user_id' })
-  userId: number;
+  @PrimaryGeneratedColumn()
+  id?: number;
 
   @Column()
-  password: string;
+  password?: string;
 
   @Column()
   email: string;
@@ -18,5 +18,5 @@ export class Users extends BaseEntity {
   refreshToken?: string;
 
   @OneToMany(() => Bookings, (booking) => booking.user)
-  bookings: Bookings[];
+  bookings?: Bookings[];
 }

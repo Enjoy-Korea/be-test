@@ -5,8 +5,8 @@ import { BaseEntity } from './base.entity';
 
 @Entity({ name: 'bookings' })
 export class Bookings extends BaseEntity {
-  @PrimaryGeneratedColumn({ name: 'booking_id' })
-  bookingId: number;
+  @PrimaryGeneratedColumn()
+  id?: number;
 
   @ManyToOne(() => Users, (user) => user.bookings)
   user: Users;

@@ -4,13 +4,11 @@ import {
   BadRequestException,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { RepositoriesService } from 'src/repositories/repositories.service';
+import { RepositoriesService } from '../repositories/repositories.service';
 import { UserDTO } from './interface/auth.dto';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import { error } from 'console';
-import { userInfo } from 'os';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
@@ -48,8 +46,6 @@ export class AuthService {
     await this.repositoriesService.upsertUser(correctUser);
 
     return { accessToken, refreshToken };
-
-    // 토큰 발급해서 주는 로직 추가~~
   }
 
   async userSignUp(userSignUpInfo: UserDTO) {
@@ -71,12 +67,7 @@ export class AuthService {
         secret: this.configService.get('REFRESH_TOKEN_SECRET'),
       });
     } catch (err) {
-      if (err.name === 'TokenExpiredError') {
-        throw new UnauthorizedException('token expired');
-      } else {
-        console.error('verify JWT token error', err);
-        throw new InternalServerErrorException('verify JWT token error');
-      }
+      throw new UnauthorizedException('token expired');
     }
 
     if (!(payload && payload.tokenType === 'refreshToken'))

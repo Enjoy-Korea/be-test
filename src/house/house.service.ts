@@ -10,7 +10,13 @@ export class HouseService {
   constructor(private repositoriesService: RepositoriesService) {}
 
   async createHouse(newHouesInfo: CreateHouseDTO): Promise<Houses> {
-    return await this.repositoriesService.createHouse(newHouesInfo);
+    const house: Houses = await this.repositoriesService.createHouse(
+      newHouesInfo,
+    );
+    if (newHouesInfo.images)
+      await this.createHouseImage(house.id, newHouesInfo.images);
+
+    return house;
   }
 
   async getHouseDetail(houseId: number): Promise<Houses> {
@@ -35,6 +41,10 @@ export class HouseService {
     houseId: number,
     imageInfo: HouseImagesDTO[],
   ): Promise<HouseImages[]> {
-    return await this.repositoriesService.createHouseImage(houseId, imageInfo);
+    const houseinfo = await this.repositoriesService.getHouseDetail(houseId);
+    const imageArr: HouseImages[] = imageInfo.map((image) => {
+      return { ...image, houses: houseinfo };
+    });
+    return await this.repositoriesService.createHouseImage(imageArr);
   }
 }

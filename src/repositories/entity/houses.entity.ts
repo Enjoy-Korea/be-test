@@ -5,8 +5,8 @@ import { BaseEntity } from './base.entity';
 
 @Entity({ name: 'houses' })
 export class Houses extends BaseEntity {
-  @PrimaryGeneratedColumn({ name: 'houses_id' })
-  houseId: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column()
   name: string;
@@ -27,8 +27,8 @@ export class Houses extends BaseEntity {
   pricePerDay: number;
 
   @OneToMany(() => HouseImages, (houseImage) => houseImage.houses)
-  houseImages: HouseImages[];
+  images?: HouseImages[];
 
   @OneToMany(() => Bookings, (booking) => booking.house)
-  bookings: Bookings[];
+  bookings?: Bookings[];
 }

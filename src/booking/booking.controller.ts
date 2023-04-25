@@ -4,7 +4,7 @@ import { Bookings } from 'src/repositories/entity/bookings.entity';
 import { BookingService } from './booking.service';
 import { AuthGuard } from 'src/auth/guard/guard';
 
-@UseGuards(AuthGuard)
+// @UseGuards(AuthGuard)
 @Controller('booking')
 export class BookingController {
   constructor(private bookingService: BookingService) {}

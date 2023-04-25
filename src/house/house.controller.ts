@@ -14,7 +14,7 @@ import { HouseImagesDTO } from './interface/houseimage.dto';
 import { HouseImages } from 'src/repositories/entity/houseimages.entity';
 import { AuthGuard } from 'src/auth/guard/guard';
 
-@UseGuards(AuthGuard)
+// @UseGuards(AuthGuard)
 @Controller('house')
 export class HouseController {
   constructor(private readonly houseService: HouseService) {}

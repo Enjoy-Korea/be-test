@@ -55,33 +55,20 @@ export class RepositoriesService {
   }
 
   async createHouse(newHouesInfo: CreateHouseDTO): Promise<Houses> {
-    const queryRunner =
-      this.housesRepository.manager.connection.createQueryRunner();
-    await queryRunner.connect();
-    await queryRunner.startTransaction();
     try {
       const houseSavedInfo = await this.housesRepository.save(newHouesInfo);
-      if (newHouesInfo.images) {
-        const imagesArr = newHouesInfo.images.map((image) => {
-          return { ...image, houseId: houseSavedInfo.houseId };
-        });
-        await this.houseImagesRepository.save(imagesArr);
-      }
       return houseSavedInfo;
     } catch (err) {
-      await queryRunner.rollbackTransaction();
       console.error(err);
       throw new InternalServerErrorException();
-    } finally {
-      await queryRunner.release();
     }
   }
 
   async getHouseDetail(houseId: number): Promise<Houses> {
     try {
       return this.housesRepository.findOne({
-        where: { houseId: houseId },
-        relations: ['houseImages'],
+        where: { id: houseId },
+        relations: ['images'],
       });
     } catch (err) {
       console.error(err);
@@ -114,15 +101,21 @@ export class RepositoriesService {
   async createBooking(bookingInfo: BookingInfoDTO): Promise<Bookings> {
     try {
       const user = await this.usersRepository.findOne({
-        where: { userId: bookingInfo.userId },
+        where: { id: bookingInfo.userId },
       });
 
       const house = await this.housesRepository.findOne({
-        where: { houseId: bookingInfo.houseId },
+        where: { id: bookingInfo.houseId },
       });
 
       if (user && house) {
-        return await this.bookingsRepository.save(bookingInfo);
+        const createdBookingInfo: Bookings = {
+          user: user,
+          house: house,
+          checkinDate: bookingInfo.checkinDate,
+          checkoutDate: bookingInfo.checkoutDate,
+        };
+        return await this.bookingsRepository.save(createdBookingInfo);
       } else {
         throw new InternalServerErrorException();
       }
@@ -135,7 +128,7 @@ export class RepositoriesService {
   async getBookingList(userId: number): Promise<Bookings[]> {
     try {
       return await this.bookingsRepository.find({
-        where: { user: { userId: userId } },
+        where: { user: { id: userId } },
       });
     } catch (err) {
       console.error(err);
@@ -143,23 +136,9 @@ export class RepositoriesService {
     }
   }
 
-  async createHouseImage(
-    houseId: number,
-    imageInfo: HouseImagesDTO[],
-  ): Promise<HouseImages[]> {
+  async createHouseImage(houseImages: HouseImages[]): Promise<HouseImages[]> {
     try {
-      const houseInfo = await this.housesRepository.findOneOrFail({
-        where: { houseId: houseId },
-      });
-      if (!houseInfo) {
-        throw new NotFoundException();
-      }
-
-      const imagesArr = imageInfo.map((image) => {
-        return { ...image, houseId: houseInfo.houseId };
-      });
-
-      return await this.houseImagesRepository.save(imagesArr);
+      return await this.houseImagesRepository.save(houseImages);
     } catch (err) {
       console.error(err);
       throw new InternalServerErrorException();

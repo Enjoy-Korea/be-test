@@ -1,8 +1,12 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 const config: TypeOrmModuleOptions = {
-  type: 'sqlite',
-  database: 'db.enkor-bnb',
+  type: 'mysql',
+  database: 'enkorbnb',
+  host: 'localhost',
+  port: 3306,
+  username: 'root',
+  password: '1234',
   autoLoadEntities: true,
   synchronize: true,
   logging: true,
