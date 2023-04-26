@@ -2,10 +2,11 @@ import * as express from "express";
 import * as cors from "cors";
 import { errorHandler } from "./middlewares/error-handler";
 import userRouter from "./users/users.routes";
+import "dotenv/config";
 
 class Server {
   public app: express.Application;
-  private port = 5000;
+  private port: number = Number(process.env.PORT);
 
   constructor() {
     const app: express.Application = express();
@@ -29,7 +30,6 @@ class Server {
 
     //* 404 middleware
     this.app.use((req, res, next) => {
-      console.log("haha");
       res.status(404).send("404 NOT FOUND");
     });
 
