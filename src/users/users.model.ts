@@ -10,10 +10,6 @@ export class UserModel {
     );
   }
 
-  async login(name: string) {
-    return null;
-  }
-
   async getUserByEmail(email: string): Promise<User> {
     const [rows] = await pool.query(
       `SELECT *

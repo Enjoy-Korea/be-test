@@ -30,9 +30,7 @@ class UserService {
     }
 
     const storedHashedPassword: string = user.password;
-    console.log(1);
     const isPasswordCorrect: boolean = await bcrypt.compare(password, storedHashedPassword);
-    console.log(2);
 
     if (!isPasswordCorrect) {
       throw new Error("비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.");
