@@ -1,9 +1,12 @@
 import * as express from "express";
 import * as cors from "cors";
+import { errorHandler } from "./middlewares/error-handler";
+import userRouter from "./users/users.routes";
+import "dotenv/config";
 
 class Server {
   public app: express.Application;
-  private port = 5000;
+  private port: number = Number(process.env.PORT);
 
   constructor() {
     const app: express.Application = express();
@@ -11,9 +14,10 @@ class Server {
   }
 
   private setRoute() {
-    this.app.get("/", async (req, res) => {
-      res.send("hello enko");
+    this.app.get("/", async (req: express.Request, res: express.Response) => {
+      res.json({ message: "Hello, Enko!" });
     });
+    this.app.use("/users", userRouter);
   }
 
   private setMiddleware() {
@@ -22,16 +26,15 @@ class Server {
     // json middleware
     this.app.use(express.json());
 
-    // Content-Type: application/x-www-form-urlencoded 형태의 데이터를 인식하고 핸들링할 수 있게 함.
-    this.app.use(express.urlencoded({ extended: false }));
-
     this.setRoute();
 
-    // 404 middleware
+    //* 404 middleware
     this.app.use((req, res, next) => {
-      console.log("this is error middleware");
-      res.send({ error: "404 not found error" });
+      res.status(404).send("404 NOT FOUND");
     });
+
+    //* 400 error handling
+    this.app.use(errorHandler);
   }
 
   public listen() {
