@@ -2,6 +2,7 @@ import * as express from "express";
 import * as cors from "cors";
 import { errorHandler } from "./middlewares/error-handler";
 import userRouter from "./users/users.routes";
+import accommodationRouter from "./accommodations/accommodations.routes";
 import "dotenv/config";
 
 class Server {
@@ -17,13 +18,13 @@ class Server {
     this.app.get("/", async (req: express.Request, res: express.Response) => {
       res.json({ message: "Hello, Enko!" });
     });
-    this.app.use("/users", userRouter);
+    this.app.use("api/users", userRouter);
+    this.app.use("/accommodations", accommodationRouter);
   }
 
   private setMiddleware() {
     this.app.use(cors());
 
-    // json middleware
     this.app.use(express.json());
 
     this.setRoute();
