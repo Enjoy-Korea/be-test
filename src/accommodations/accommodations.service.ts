@@ -84,6 +84,11 @@ class AccommodationService {
 
     return this.parsingAccommodations(accommodations, universities);
   }
+
+  // * 페이지네이션
+  pagination(accommodations: parsedAccommodation[], currentPageNum: number, perPage: number): parsedAccommodation[] {
+    return accommodations.slice(perPage * (currentPageNum - 1), perPage * (currentPageNum - 1) + perPage);
+  }
 }
 
 const accommodationService = new AccommodationService(accommodationModel);

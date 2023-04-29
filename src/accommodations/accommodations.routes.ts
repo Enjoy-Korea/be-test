@@ -26,12 +26,22 @@ router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
 
 // * 전체 매물 리스트 조회
 router.get("/", async (req: Request, res: Response, next: NextFunction) => {
+  const currentPageNum: number = Number(req.query.page);
+  const perPage = 2;
   try {
     const accommodations: parsedAccommodation[] = await accommodationService.getAllAccommodations();
 
-    //* TODO: pagination
+    // * pagination
+    const accommodationsLength: number = accommodations.length;
+    const maxPageNum: number = Math.ceil(accommodationsLength / perPage);
 
-    res.status(200).json(accommodations);
+    if (isNaN(currentPageNum) || currentPageNum < 1 || currentPageNum > maxPageNum) {
+      throw new Error("올바르지 않은 page 번호입니다.");
+    }
+
+    const accommodationsPerPage = await accommodationService.pagination(accommodations, currentPageNum, perPage);
+
+    res.status(200).json({ accommodationsPerPage, maxPageNum });
   } catch (error) {
     next(error);
   }
