@@ -2,7 +2,7 @@ import { Router, Request, Response, NextFunction } from "express";
 import { accommodationService } from "./accommodations.service";
 import { userValidator } from "../middlewares/user-validator";
 import { validationResult } from "express-validator";
-import { parsedAccommodation } from "../types/accommodation.type";
+import { parsedAccommodationDetail, parsedAccommodation } from "../types/accommodation.type";
 
 const router = Router();
 
@@ -16,9 +16,22 @@ router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
       throw new Error("Invalid ID");
     }
 
-    const accommodation: parsedAccommodation = await accommodationService.getAccommodationById(accommodation_id);
+    const accommodation: parsedAccommodationDetail = await accommodationService.getAccommodationById(accommodation_id);
 
     res.status(200).json(accommodation);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// * 전체 매물 리스트 조회
+router.get("/", async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const accommodations: parsedAccommodation[] = await accommodationService.getAllAccommodations();
+
+    //* TODO: pagination
+
+    res.status(200).json(accommodations);
   } catch (error) {
     next(error);
   }

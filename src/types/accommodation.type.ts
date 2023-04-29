@@ -6,9 +6,8 @@ export interface Image {
 export interface Accommodation {
   id: number;
   name: string;
-  description: string;
-  address: string;
-  university: string;
+  houseType: string;
+  university: string[];
   pricePerDay: number;
   imageURL: string;
   URLKey: number;
@@ -17,9 +16,27 @@ export interface Accommodation {
 export interface parsedAccommodation {
   id: number;
   name: string;
-  description: string;
-  address: string;
+  houseType: string;
   university: string[];
   pricePerDay: number;
   images: Image[];
+}
+
+export interface AccommodationDetail extends Accommodation {
+  description: string;
+  address: string;
+}
+
+export interface parsedAccommodationDetail extends parsedAccommodation {
+  description: string;
+  address: string;
+}
+
+export interface University {
+  accommodation_id: number;
+  name: string;
+}
+
+export interface UniversityName {
+  name: string;
 }
