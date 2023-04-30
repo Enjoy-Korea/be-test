@@ -3,6 +3,7 @@ import * as cors from "cors";
 import { errorHandler } from "./middlewares/error-handler";
 import userRouter from "./users/users.routes";
 import accommodationRouter from "./accommodations/accommodations.routes";
+import reservationRouter from "./reservations/reservations.routes";
 import "dotenv/config";
 
 class Server {
@@ -20,6 +21,7 @@ class Server {
     });
     this.app.use("/api/users", userRouter);
     this.app.use("/api/accommodations", accommodationRouter);
+    this.app.use("/api/reservations", reservationRouter);
   }
 
   private setMiddleware() {

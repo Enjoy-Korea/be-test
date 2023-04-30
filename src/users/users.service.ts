@@ -14,7 +14,6 @@ class UserService {
   async signup(email: string, password: string): Promise<void> {
     const user: User = await this.userModel.getUserByEmail(email);
 
-    // * TODO: 이미 존재하는 email의 경우 예외처리
     if (user) {
       throw new Error("이미 등록된 이메일입니다. 다시 한 번 확인해 주세요.");
     }
@@ -40,6 +39,12 @@ class UserService {
     const token: string = jwt.sign({ userEmail: email }, secretKey);
 
     return { token };
+  }
+
+  async getUserByEmail(email: string): Promise<User> {
+    const user = await this.userModel.getUserByEmail(email);
+
+    return user;
   }
 }
 
