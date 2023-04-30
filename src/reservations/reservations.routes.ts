@@ -1,3 +1,4 @@
+import { Reservation } from "types/reservation.type";
 import { reservationValidator } from "../middlewares/reservation-validator";
 import { Router, Request, Response, NextFunction } from "express";
 import { reservationService } from "./reservations.service";
@@ -9,7 +10,6 @@ import { User } from "../types/users.type";
 const router = Router();
 
 // * 예약
-// TODO: 날짜 중복 체크
 router.post("/", loginRequired, reservationValidator, async (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);
 
@@ -42,10 +42,9 @@ router.get("/", loginRequired, async (req: Request, res: Response, next: NextFun
   try {
     const user: User = await userService.getUserByEmail(req.userEmail);
 
-    // USER ID로 예약 테이블 검색
-    
+    const reservation: Reservation[] = await reservationService.getReservationByUserId(user.id);
 
-    res.status(201).send("SUCCESS");
+    res.status(200).send(reservation);
   } catch (error) {
     next(error);
   }

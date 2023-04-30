@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { reservationModel, ReservationModel } from "./reservations.model";
+import { Reservation } from "../types/reservation.type";
 
 class ReservationService {
   private reservationModel: ReservationModel;
@@ -12,7 +13,9 @@ class ReservationService {
     this.reservationModel.createReservation(userId, accommodationId, checkInDate, checkOutDate);
   }
 
-  
+  async getReservationByUserId(userId: number): Promise<Reservation[]> {
+    return await this.reservationModel.getReservationByUserId(userId);
+  }
 }
 
 const reservationService = new ReservationService(reservationModel);

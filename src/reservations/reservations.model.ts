@@ -12,8 +12,8 @@ export class ReservationModel {
     );
   }
 
-  async getReservationByUserId(userId: number): Promise<Reservation> {
-    const reservationInfo: Reservation = await pool.query(
+  async getReservationByUserId(userId: number): Promise<Reservation[]> {
+    const [reservationInfo] = await pool.query(
       `
       SELECT
         a.id as reservation_id,
