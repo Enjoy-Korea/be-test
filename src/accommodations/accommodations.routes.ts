@@ -2,7 +2,7 @@ import { Router, Request, Response, NextFunction } from "express";
 import { accommodationService } from "./accommodations.service";
 import { userValidator } from "../middlewares/user-validator";
 import { validationResult } from "express-validator";
-import { parsedAccommodation } from "../types/accommodation.type";
+import { parsedAccommodationDetail, parsedAccommodation } from "../types/accommodation.type";
 
 const router = Router();
 
@@ -16,9 +16,46 @@ router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
       throw new Error("Invalid ID");
     }
 
-    const accommodation: parsedAccommodation = await accommodationService.getAccommodationById(accommodation_id);
+    const accommodation: parsedAccommodationDetail = await accommodationService.getAccommodationById(accommodation_id);
 
     res.status(200).json(accommodation);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// * 전체 매물 리스트 조회
+router.get("/", async (req: Request, res: Response, next: NextFunction) => {
+  const currentPageNum: number = Number(req.query.page);
+  const perPage: number = Number(req.query.per_page);
+  const sort: string | undefined = req.query.sort as string | undefined;
+
+  try {
+    let accommodations: parsedAccommodation[];
+
+    if (sort === "price_low") {
+      accommodations = await accommodationService.getAllAccommodationsBySortingPrice("ASC");
+    } else if (sort === "price_high") {
+      accommodations = await accommodationService.getAllAccommodationsBySortingPrice("DESC");
+    } else {
+      accommodations = await accommodationService.getAllAccommodations();
+    }
+
+    // * pagination
+    const accommodationsLength: number = accommodations.length;
+    const maxPageNum: number = Math.ceil(accommodationsLength / perPage);
+
+    if (isNaN(currentPageNum) || currentPageNum < 1 || currentPageNum > maxPageNum) {
+      throw new Error("올바르지 않은 page 번호입니다.");
+    }
+
+    if (isNaN(perPage) || perPage < 1) {
+      throw new Error("올바르지 않은 per_page 번호입니다.");
+    }
+
+    const accommodationsPerPage = await accommodationService.pagination(accommodations, currentPageNum, perPage);
+
+    res.status(200).json({ accommodationsPerPage, maxPageNum });
   } catch (error) {
     next(error);
   }

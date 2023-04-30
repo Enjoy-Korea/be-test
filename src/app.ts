@@ -18,8 +18,8 @@ class Server {
     this.app.get("/", async (req: express.Request, res: express.Response) => {
       res.json({ message: "Hello, Enko!" });
     });
-    this.app.use("api/users", userRouter);
-    this.app.use("/accommodations", accommodationRouter);
+    this.app.use("/api/users", userRouter);
+    this.app.use("/api/accommodations", accommodationRouter);
   }
 
   private setMiddleware() {
