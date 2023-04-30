@@ -27,9 +27,19 @@ router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
 // * 전체 매물 리스트 조회
 router.get("/", async (req: Request, res: Response, next: NextFunction) => {
   const currentPageNum: number = Number(req.query.page);
-  const perPage = 2;
+  const perPage: number = Number(req.query.per_page);
+  const sort: string | undefined = req.query.sort as string | undefined;
+
   try {
-    const accommodations: parsedAccommodation[] = await accommodationService.getAllAccommodations();
+    let accommodations: parsedAccommodation[];
+
+    if (sort === "price_low") {
+      accommodations = await accommodationService.getAllAccommodationsBySortingPrice("ASC");
+    } else if (sort === "price_high") {
+      accommodations = await accommodationService.getAllAccommodationsBySortingPrice("DESC");
+    } else {
+      accommodations = await accommodationService.getAllAccommodations();
+    }
 
     // * pagination
     const accommodationsLength: number = accommodations.length;
@@ -37,6 +47,10 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
 
     if (isNaN(currentPageNum) || currentPageNum < 1 || currentPageNum > maxPageNum) {
       throw new Error("올바르지 않은 page 번호입니다.");
+    }
+
+    if (isNaN(perPage) || perPage < 1) {
+      throw new Error("올바르지 않은 per_page 번호입니다.");
     }
 
     const accommodationsPerPage = await accommodationService.pagination(accommodations, currentPageNum, perPage);

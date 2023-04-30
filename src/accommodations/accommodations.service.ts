@@ -85,6 +85,14 @@ class AccommodationService {
     return this.parsingAccommodations(accommodations, universities);
   }
 
+  // * 전체 매물 리스트 반환 (가격순 정렬)
+  async getAllAccommodationsBySortingPrice(sortOrder: string): Promise<parsedAccommodation[]> {
+    const accommodations: Accommodation[] = await accommodationModel.getAllAccommodationsBySortingPrice(sortOrder);
+    const universities: University[] = await accommodationModel.getAllUniverstyNames();
+
+    return this.parsingAccommodations(accommodations, universities);
+  }
+
   // * 페이지네이션
   pagination(accommodations: parsedAccommodation[], currentPageNum: number, perPage: number): parsedAccommodation[] {
     return accommodations.slice(perPage * (currentPageNum - 1), perPage * (currentPageNum - 1) + perPage);

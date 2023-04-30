@@ -81,6 +81,33 @@ export class AccommodationModel {
     return rows;
   }
 
+  async getAllAccommodationsBySortingPrice(sortOrder: string): Promise<Accommodation[]> {
+    const [rows] = await pool.query(
+      `
+      SELECT
+        A.id,
+        A.title AS name,
+        AAT.name AS houseType,
+        A.price AS pricePerDay,
+        AU.url AS imageURL,
+        AU.url_key AS URLKey
+      FROM
+        accommodation A,
+        accommodation_type AAT,
+        accommodation_url AU
+      WHERE
+        A.accommodation_type_id = AAT.id
+      AND
+        AU.accommodation_id = A.id
+      ORDER BY
+        pricePerDay ${sortOrder},
+        id, URLKey;
+      `
+    );
+
+    return rows;
+  }
+
   async getAllUniverstyNames(): Promise<University[]> {
     const [rows] = await pool.query(
       `
