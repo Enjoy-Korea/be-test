@@ -11,6 +11,8 @@ class ReservationService {
   async createReservation(userId: number, accommodationId: number, checkInDate: string, checkOutDate: string): Promise<void> {
     this.reservationModel.createReservation(userId, accommodationId, checkInDate, checkOutDate);
   }
+
+  
 }
 
 const reservationService = new ReservationService(reservationModel);
