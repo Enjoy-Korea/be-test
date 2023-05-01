@@ -33,3 +33,38 @@
 - Typescript 사용
 - 유닛 테스트
 - 문서화
+
+## Installation
+
+```bash
+$ npm install
+```
+
+## Running the app
+
+```bash
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+```
+
+## ERD
+![enko_erd](https://user-images.githubusercontent.com/63035520/235424011-3185dc2c-6cfb-4f1e-9ad6-5029582a03c2.png)
+
+
+## 사용 기술 스택
+- Node.js 16
+- Express.js
+- MySQL 8.0 (Amazon lightsail DB)
+- TypeScript
+- Raw Query
+
+
+## API 문서
+- 문서 경로: `http://localhost:{port_number}/docs`
+
+![image](https://user-images.githubusercontent.com/63035520/235425537-d9c9ea63-7182-424b-bd6c-be9192bcd7a3.png)
+
