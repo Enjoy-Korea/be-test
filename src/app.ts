@@ -4,14 +4,15 @@ import { errorHandler } from "./middlewares/error-handler";
 import userRouter from "./users/users.routes";
 import accommodationRouter from "./accommodations/accommodations.routes";
 import reservationRouter from "./reservations/reservations.routes";
+import { swaggerDocs } from "./utils/swagger";
 import "dotenv/config";
 
 class Server {
-  public app: express.Application;
+  public app: express.Express;
   private port: number = Number(process.env.PORT);
 
   constructor() {
-    const app: express.Application = express();
+    const app: express.Express = express();
     this.app = app;
   }
 
@@ -26,8 +27,9 @@ class Server {
 
   private setMiddleware() {
     this.app.use(cors());
-
     this.app.use(express.json());
+    
+    swaggerDocs(this.app);
 
     this.setRoute();
 
