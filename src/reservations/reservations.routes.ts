@@ -67,11 +67,11 @@ router.post("/", loginRequired, reservationValidator, async (req: Request, res: 
 // * 예약 조회
 /**
  * @openapi
- * '/api/reservations':
+ * '/api/reservations/my':
  *  get:
  *    tags:
  *      - Reservations
- *    summary: 예약 조회 (JWT 토큰으로 유저 특정)
+ *    summary: 예약 조회
  *    description: 유저는 예약한 내용을 확인할 수 있습니다.
  *    security:
  *      - bearerAuth: []
@@ -88,7 +88,7 @@ router.post("/", loginRequired, reservationValidator, async (req: Request, res: 
  *        description: Internal error(s)
  *
  */
-router.get("/", loginRequired, async (req: Request, res: Response, next: NextFunction) => {
+router.get("/my", loginRequired, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const user: User = await userService.getUserByEmail(req.userEmail);
 
