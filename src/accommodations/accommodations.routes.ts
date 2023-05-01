@@ -57,7 +57,7 @@ router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
  *  get:
  *    tags:
  *      - Accommodations
- *    summary: 숙소 리스트 조회
+ *    summary: 페이지네이션, 가격순 정렬 옵션을 적용한 모든 숙소 목록 조회
  *    description: 모든 숙소 목록을 가져오는 API로, 페이지네이션과 정렬 옵션을 선택할 수 있습니다.
  *    parameters:
  *      - in: query

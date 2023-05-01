@@ -15,6 +15,7 @@ class ReservationService {
 
   async getReservationByUserId(userId: number): Promise<Reservation[]> {
     const reservation = await this.reservationModel.getReservationByUserId(userId);
+
     reservation.forEach((val) => {
       let curCheckInDate = val.checkIn as Date;
       let curCheckOutDate = val.checkOut as Date;

@@ -16,16 +16,16 @@ export class ReservationModel {
     const [reservationInfo] = await pool.query(
       `
       SELECT
-        a.id as reservation_id,
-        a.created_at as reservation_date,
-        b.id as user_id,
-        b.email as use_email,
+        a.id as reservationId,
+        a.created_at as reservationDate,
+        b.id as userId,
+        b.email as useEmail,
         c.title as name,
         c.description as description,
         c.price as pricePerDay,
-        c.address as accommodation_address,
-        a.check_in_date as check_in,
-        a.check_out_date as check_out
+        c.address as accommodationAddress,
+        a.check_in_date as checkIn,
+        a.check_out_date as checkOut
       FROM
         reservation a,
         user b,

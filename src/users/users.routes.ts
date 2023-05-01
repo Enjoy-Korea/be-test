@@ -12,7 +12,7 @@ const router = Router();
  *  post:
  *    tags:
  *      - Users
- *    summary: Register a user
+ *    summary: 회원가입
  *    description: 새로운 유저 추가
  *    requestBody:
  *     description: 이메일 주소는 유효한 이메일 형식에 따라 입력하시고, 5~64자 사이로 입력해 주세요. <br> 패스워드는 4~20자 사이로 입력해 주세요.
@@ -56,7 +56,7 @@ router.post("/signup", userValidator, async (req: Request, res: Response, next: 
  *  post:
  *    tags:
  *      - Users
- *    summary: user login
+ *    summary: 로그인
  *    description: 로그인
  *    requestBody:
  *     required: true
