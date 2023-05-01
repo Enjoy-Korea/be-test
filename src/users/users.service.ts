@@ -4,7 +4,7 @@ import * as bcrypt from "bcrypt";
 import { User } from "../types/users.type";
 import * as jwt from "jsonwebtoken";
 
-class UserService {
+export class UserService {
   private userModel: UserModel;
 
   constructor(userModel: UserModel) {
@@ -19,7 +19,7 @@ class UserService {
     }
 
     const hashedPassword: string = await bcrypt.hash(password, Number(process.env.SALT_ROUNDS));
-    await this.userModel.singnup(email, hashedPassword);
+    await this.userModel.signup(email, hashedPassword);
   }
 
   async login(email: string, password: string): Promise<{ token: string }> {

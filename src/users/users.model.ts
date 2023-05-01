@@ -2,7 +2,7 @@ import pool from "../db/db.index";
 import { User } from "../types/users.type";
 
 export class UserModel {
-  async singnup(email: string, password: string): Promise<void> {
+  async signup(email: string, password: string): Promise<void> {
     await pool.query(
       `INSERT INTO user (email, password)
        VALUES(?, ?)`,

@@ -7,7 +7,7 @@ import reservationRouter from "./reservations/reservations.routes";
 import { swaggerDocs } from "./utils/swagger";
 import "dotenv/config";
 
-class Server {
+export class Server {
   public app: express.Express;
   private port: number = Number(process.env.PORT);
 
@@ -28,7 +28,7 @@ class Server {
   private setMiddleware() {
     this.app.use(cors());
     this.app.use(express.json());
-    
+
     swaggerDocs(this.app);
 
     this.setRoute();
@@ -47,6 +47,11 @@ class Server {
     this.app.listen(this.port, () => {
       console.log(`정상적으로 서버를 시작하였습니다. http://localhost:${this.port}`);
     });
+  }
+
+  // * 테스트 코드에 사용하기 위함
+  public getExpressApp(): express.Express {
+    return this.app;
   }
 }
 
